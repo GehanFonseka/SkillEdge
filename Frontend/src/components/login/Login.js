@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/authApi";
 import { Link } from "react-router-dom";
+import { FaUser, FaLock } from "react-icons/fa";
 import "./Login.css";
 
 
@@ -25,21 +26,42 @@ const Login = ({ setAuthToken }) => {
     }
   };
 
+
   return (
     <div className="auth-container">
-      <h2>Login</h2>
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        <button type="submit">Login</button><br></br><br></br>
-        <p className="register-link">
-    Don't have an account? <Link to="/Register">Register</Link>
-  </p>
-      </form>
-    
+      <div className="login-box">
+        <h2>Welcome Back</h2>
+        <p className="sub-text">Please login to your account</p>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="input-container">
+            <FaUser className="icon" />
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <FaLock className="icon" />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="login-btn">Login</button>
+          {error && <p className="error-message">{error}</p>}
+          <p className="register-link">
+            Don't have an account? <Link to="/register">Register</Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
-
 export default Login;

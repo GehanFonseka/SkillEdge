@@ -1,0 +1,58 @@
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #1a365d, #2c5282); /* New gradient background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff; /* White text for contrast */
+    margin: 0;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #cbd5e0; /* Light gray for links */
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #ffffff; /* White text on hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .header {
+      padding: 1rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .logo h1 {
+      font-size: 1.25rem;
+    }
+  
+    .nav-links {
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  
+    .nav-link {
+      font-size: 0.875rem;
+    }
+  }
