@@ -3,8 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/authApi";
 import { Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import FacebookLogin from "react-facebook-login";
+import { jwtDecode } from "jwt-decode";// To decode JWT token
 import "./Login.css";
 
+const GOOGLE_CLIENT_ID =
+  "147306522332-au6tlle7fkcg2nsft0vqljglkminc2cs.apps.googleusercontent.com";
 
 const Login = ({ setAuthToken }) => {
   const [username, setUsername] = useState("");
@@ -18,14 +23,36 @@ const Login = ({ setAuthToken }) => {
 
     try {
       const token = await loginUser({ username, password });
-      localStorage.setItem("token", token); // Store JWT token in localStorage
+      localStorage.setItem("token", token);
       setAuthToken(token);
-      navigate("/"); // Redirect to home page
+      navigate("/");
     } catch (err) {
       setError("Invalid username or password.");
     }
   };
 
+  const handleGoogleLoginSuccess = (response) => {
+    const token = response.credential;
+    const user = jwtDecode(token); // Decode Google JWT
+
+    console.log("Google User Info:", user);
+
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+    setAuthToken(token);
+    navigate("/");
+  };
+
+  const handleFacebookLoginSuccess = (response) => {
+    const token = response.accessToken;
+    localStorage.setItem("token", token);
+    setAuthToken(token);
+    navigate("/");
+  };
+
+  const handleSocialLoginFailure = () => {
+    setError("Social login failed. Please try again.");
+  };
 
   return (
     <div className="auth-container">
@@ -54,14 +81,34 @@ const Login = ({ setAuthToken }) => {
               required
             />
           </div>
-          <button type="submit" className="login-btn">Login</button>
-          {error && <p className="error-message">{error}</p>}
+          <button type="submit" className="login-btn">
+            Login
+          </button>
           <p className="register-link">
             Don't have an account? <Link to="/register">Register</Link>
           </p>
         </form>
+
+        {/* Social Login */}
+        <div className="social-login">
+          <GoogleOAuthProvider clientId="147306522332-au6tlle7fkcg2nsft0vqljglkminc2cs.apps.googleusercontent.com">
+            <GoogleLogin
+              onSuccess={handleGoogleLoginSuccess}
+              onError={handleSocialLoginFailure}
+            />
+          </GoogleOAuthProvider>
+
+          <FacebookLogin
+            appId="YOUR_FACEBOOK_APP_ID"
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={handleFacebookLoginSuccess}
+            onFailure={handleSocialLoginFailure}
+          />
+        </div>
       </div>
     </div>
   );
 };
+
 export default Login;
