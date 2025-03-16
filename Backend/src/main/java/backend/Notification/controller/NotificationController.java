@@ -47,3 +47,4 @@ public class NotificationController {
         return ResponseEntity.notFound().build();
     }
 }
+// Update 0 - 2025-03-16 - Improved notification system
