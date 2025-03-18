@@ -47,3 +47,4 @@ public class NotificationController {
 // Update 25 - 2025-04-10 - Improved notification system
 // Update 27 - 2025-04-12 - Improved notification system
 // Update 1 - 2025-03-17 - Improved notification system
+// Update 2 - 2025-03-18 - Improved notification system
