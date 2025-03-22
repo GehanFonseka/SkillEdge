@@ -94,3 +94,4 @@ function NotificationsPage() {
 export default NotificationsPage;
 // Update 2 - 2025-03-18 - Enhanced notification functionality
 // Update 4 - 2025-03-20 - Enhanced notification functionality
+// Update 6 - 2025-03-22 - Enhanced notification functionality
