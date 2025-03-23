@@ -49,3 +49,4 @@ public class NotificationController {
 // Update 1 - 2025-03-17 - Improved notification system
 // Update 2 - 2025-03-18 - Improved notification system
 // Update 5 - 2025-03-21 - Improved notification system
+// Update 7 - 2025-03-23 - Improved notification system
