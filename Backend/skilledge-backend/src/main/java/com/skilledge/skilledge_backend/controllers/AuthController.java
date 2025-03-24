@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilledge.skilledge_backend.models.User;
 import com.skilledge.skilledge_backend.repository.UserRepository;
 import com.skilledge.skilledge_backend.security.JwtUtil;
-@CrossOrigin(origins = "http://localhost:3001") 
+@CrossOrigin(origins = "http://localhost:3001,http://localhost:3000") 
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
