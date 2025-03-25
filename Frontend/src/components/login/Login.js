@@ -6,6 +6,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import FacebookLogin from "react-facebook-login";
 import { jwtDecode } from "jwt-decode";// To decode JWT token
+import axios from "../../api/axiosConfig"; // Use the configured Axios instance
 import "./Login.css";
 
 const GOOGLE_CLIENT_ID =
@@ -24,6 +25,16 @@ const Login = ({ setAuthToken }) => {
     try {
       const token = await loginUser({ username, password });
       localStorage.setItem("token", token);
+
+      // Fetch user profile after login
+      const response = await axios.get("/api/v1/auth/profile", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const user = response.data;
+
+      // Store user in localStorage
+      localStorage.setItem("user", JSON.stringify(user));
+
       setAuthToken(token);
       navigate("/");
     } catch (err) {
@@ -33,9 +44,15 @@ const Login = ({ setAuthToken }) => {
 
   const handleGoogleLoginSuccess = (response) => {
     const token = response.credential;
-    const user = jwtDecode(token); // Decode Google JWT
+    const decodedUser = jwtDecode(token); // Decode Google JWT
 
-    console.log("Google User Info:", user);
+    console.log("Google User Info:", decodedUser);
+
+    // Create a user object with a username field
+    const user = {
+      username: decodedUser.name || decodedUser.email, // Use name or email as username
+      picture: decodedUser.picture, // Profile picture
+    };
 
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
@@ -91,7 +108,7 @@ const Login = ({ setAuthToken }) => {
 
         {/* Social Login */}
         <div className="social-login">
-          <GoogleOAuthProvider clientId="147306522332-au6tlle7fkcg2nsft0vqljglkminc2cs.apps.googleusercontent.com">
+          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
             <GoogleLogin
               onSuccess={handleGoogleLoginSuccess}
               onError={handleSocialLoginFailure}
