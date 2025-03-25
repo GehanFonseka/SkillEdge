@@ -1,13 +1,20 @@
 package com.skilledge.skilledge_backend.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.skilledge.skilledge_backend.models.User;
 import com.skilledge.skilledge_backend.repository.UserRepository;
@@ -68,4 +75,71 @@ public class AuthController {
         String token = jwtUtil.generateToken(user.getUsername());
         return ResponseEntity.ok(token);
     }
+    
+    @GetMapping("/profile")
+public ResponseEntity<?> getProfile(@RequestHeader(value = "Authorization", required = false) String token) {
+    if (token == null || !token.startsWith("Bearer ")) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or invalid token");
+    }
+
+    String jwtToken = token.substring(7); // Remove "Bearer "
+    String username = jwtUtil.extractUsername(jwtToken);
+
+    User user = userRepository.findByUsername(username);
+    if (user == null) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    }
+
+    return ResponseEntity.ok(user);
+}
+
+@PutMapping("/profile")
+public ResponseEntity<String> updateProfile(@RequestHeader("Authorization") String token, @RequestBody User userUpdate) {
+    if (token == null || !token.startsWith("Bearer ")) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or invalid token");
+    }
+
+    String jwtToken = token.substring(7);
+    String username = jwtUtil.extractUsername(jwtToken);
+
+    User foundUser = userRepository.findByUsername(username);
+    if (foundUser == null) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    }
+
+    // Only update allowed fields
+    foundUser.setFullName(userUpdate.getFullName());
+    foundUser.setBio(userUpdate.getBio());
+    foundUser.setLocation(userUpdate.getLocation());
+    foundUser.setPhoneNumber(userUpdate.getPhoneNumber());
+    foundUser.setProfilePictureUrl(userUpdate.getProfilePictureUrl());
+
+    // Handle password update
+    if (userUpdate.getPassword() != null && !userUpdate.getPassword().isEmpty()) {
+        foundUser.setPassword(new BCryptPasswordEncoder().encode(userUpdate.getPassword().trim()));
+    }
+
+    userRepository.save(foundUser);
+    return ResponseEntity.ok("Profile updated successfully");
+}
+
+
+@DeleteMapping("/profile")
+public ResponseEntity<String> deleteProfile(@RequestHeader("Authorization") String token) {
+    if (token == null || !token.startsWith("Bearer ")) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or invalid token");
+    }
+
+    String jwtToken = token.substring(7);
+    String username = jwtUtil.extractUsername(jwtToken);
+
+    User foundUser = userRepository.findByUsername(username);
+    if (foundUser == null) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    }
+
+    userRepository.delete(foundUser);
+    return ResponseEntity.ok("Profile deleted successfully");
+}
+
 }
