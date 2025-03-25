@@ -62,6 +62,7 @@ const ProfilePage = () => {
         .catch((err) => {
           setError('Failed to delete profile: ' + err.response?.data || err.message);
         });
+        
     }
   };
 
