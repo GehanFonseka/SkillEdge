@@ -92,7 +92,6 @@
 		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
-			<version>${jakarta.validation.version}</version>
 		</dependency>
 
 		<!-- Environment Variables Support -->

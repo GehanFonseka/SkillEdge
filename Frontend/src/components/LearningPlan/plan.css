@@ -25,6 +25,7 @@ h2 {
   position: absolute;
   top: 0;
   right: 20px;
+  width: 10%;
 }
 
 .btn-create:hover {
