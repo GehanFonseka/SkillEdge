@@ -1,0 +1,109 @@
+.learning-plan-page {
+  margin-top: 20px;
+  text-align: left;
+  position: relative;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 1px;
+  font-size: 40px;
+
+}
+
+.btn-create {
+  background-color: #ff6600;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+
+.btn-create:hover {
+  background-color: #cc5500;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.learning-plan-form {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.learning-plan-form .form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.learning-plan-form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.learning-plan-form .form-group input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.learning-plan-form .btn-submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 25%;
+}
+
+.learning-plan-form .btn-submit:hover {
+  background-color: #45a049;
+}
+
+.plan-list {
+  max-width: 600px;
+  margin-left: 0;
+  text-align: left;
+}
+
+.plan-list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.plan-list li {
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.plan-list li h4 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.plan-list li p {
+  margin: 5px 0;
+  font-size: 14px;
+}

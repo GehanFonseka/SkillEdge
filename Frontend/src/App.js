@@ -7,6 +7,8 @@ import Home from "./components/home/Home";
 import Login from "./components/login/Login";
 import Register from "./components/login/Register";
 import api from "./api/axiosConfig";
+import Plan from "./components/LearningPlan/plan"; 
+
 
 function App() {
     const [authToken, setAuthToken] = useState(localStorage.getItem("token") || null);
@@ -25,6 +27,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login setAuthToken={setAuthToken} />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/learning-plan" element={<Plan />} /> 
             </Routes>
             <Footer />
         </div>
