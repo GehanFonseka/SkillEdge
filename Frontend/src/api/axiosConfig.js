@@ -2,16 +2,14 @@ import axios from "axios";
 
 const API_BASE_URL = process.env.NODE_ENV === "development"
     ? "http://localhost:9191" // Local backend for development
-    : "https://api.example.com"; // Production backend
+  : "https://api.example.com"; // Production backend
 
-    console.log("axios api inside", API_BASE_URL);
 const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {
-        "Content-Type": "application/json",
-    } // Include credentials in requests
+        "Content-Type": "application/json"
+    }
 });
-
 // Automatically attach JWT token if available
 api.interceptors.request.use(
     (config) => {
@@ -25,5 +23,6 @@ api.interceptors.request.use(
         return Promise.reject(error);
     }
 );
+
 
 export default api;
