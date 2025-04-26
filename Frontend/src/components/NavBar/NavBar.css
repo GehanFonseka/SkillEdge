@@ -1,0 +1,113 @@
+.nav_con {
+  width: 1440px;
+  margin: 0 auto;
+}
+.side_logoo {
+  background-image: url("./img/logocover.png");
+  width: 160px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  padding: 20px 0;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.navbar_hidden {
+  transform: translateY(-100%); 
+}
+
+.navbar_visible {
+  transform: translateY(0); 
+}
+
+.nav_item_set {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 25px;
+  width: 100%;
+}
+.nav_item_icon {
+  font-size: 35px;
+  color: #6366f1;
+  cursor: pointer;
+}
+.nav_item_icon_noty {
+  font-size: 35px;
+  color: #6366f1;
+  cursor: pointer;
+}
+.nav_bar_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.nav_item_icon:hover {
+  color: #3f42f5;
+}
+.nav_nav_item:hover {
+  color: #3f42f5;
+}
+.nav_nav_item_active {
+  font-size: 16px;
+  color: #FF715B !important; 
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  position: relative; 
+}
+
+.nav_nav_item_active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%; 
+  height: 2px; 
+  background-color: #FF715B;
+}
+
+.nav_nav_item {
+  font-size: 16px;
+  color: #6366f1;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative; 
+  transition: color 0.3s ease;
+}
+
+.nav_nav_item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; 
+  width: 0;
+  height: 2px; 
+  background-color: #FF715B;
+  transition: width 0.3s ease;
+}
+
+.nav_nav_item:hover {
+  color: #FF715B;
+}
+
+.nav_nav_item:hover::after {
+  width: 100%; 
+}

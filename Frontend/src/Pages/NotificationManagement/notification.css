@@ -1,0 +1,31 @@
+.noty_topic {
+  font-size: 22px;
+  font-weight: 500;
+  color: #000;
+  text-transform: capitalize;
+}
+.noty_time {
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  text-transform: capitalize;
+  font-style: italic;
+}
+.mark_redbtn {
+  background-color: #004c5d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.noty_action_btn_con{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
