@@ -1,0 +1,199 @@
+/* General Styles */
+.home-container {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f9;
+  color: #1e293b; /* Dark gray-blue for better readability */
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a); /* Darker blue gradient */
+  min-height: 90vh;
+  color: white;
+  text-align: center;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  gap: 3rem;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: #f8fafc;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+}
+
+.cta-btn-primary,
+.cta-btn-secondary {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-btn-primary {
+  background-color: #facc15;
+  color: #1e293b;
+  border: 2px solid #facc15;
+}
+
+.cta-btn-primary:hover {
+  background-color: #fde047;
+}
+
+.cta-btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.cta-btn-secondary:hover {
+  background-color: white;
+  color: #1e3a8a;
+}
+
+/* Hero Image */
+.hero-image img {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Features Section */
+.features {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #f8fafc;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #1e3a8a;
+}
+
+.features-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.feature {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  max-width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.feature img {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 4rem 2rem;
+  background: #e2e8f0;
+  text-align: center;
+}
+
+.testimonial-box {
+  background: white;
+  padding: 2rem;
+  margin: 1rem auto;
+  border-radius: 12px;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-box p {
+  font-size: 1.1rem;
+  color: #1e3a8a;
+}
+
+.testimonial-box span {
+  font-weight: bold;
+  color: #0f172a;
+}
+
+/* Call to Action */
+.cta {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f97316, #dc2626);
+  color: white;
+}
+
+.cta p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta .cta-btn-primary {
+  background: white;
+  color: #dc2626;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+}
+
+.cta .cta-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content,
+  .features-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-image img {
+    max-width: 350px;
+  }
+}
