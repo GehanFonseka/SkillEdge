@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./HomePage.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './HomePage.css';
+// The CreatePost component from earlier
 
 const HomePage = () => {
   return (
@@ -17,7 +18,7 @@ const HomePage = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/create-post">Create Post</Link> {/* Updated path */}
+              <Link to="/create-post">Create Post</Link>
             </li>
             <li>
               <Link to="/posts">View Posts</Link>
@@ -29,14 +30,16 @@ const HomePage = () => {
       <div className="content-container">
         <section className="create-post-section">
           <h2>Create a New Post</h2>
-          {/* Include CreatePost component */}
+           {/* Include CreatePost component */}
         </section>
 
         <section className="posts-section">
           <h2>Recent Posts</h2>
-          {/* Display all posts */}
+       {/* Display all posts */}
         </section>
       </div>
+
+ 
     </div>
   );
 };
