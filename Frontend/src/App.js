@@ -4,12 +4,13 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "./components/home/Header";
 import Footer from "./components/home/Footer";
 import Home from "./components/home/Home";
-
 import Login from "./components/login/Login";
 import Register from "./components/login/Register";
-import ProfilePage from "./components/profile/profilepage"; // Corrected import
-import api from "./api/axiosConfig";
+import ProfilePage from "./components/profile/profilepage";
 import Homepage from "./components/skills/HomePage";
+import CreatePost from "./components/skills/CreatePost";
+import ViewPosts from "./components/skills/ViewPosts";
+
 
 function App() {
     const [authToken, setAuthToken] = useState(localStorage.getItem("token") || null);
@@ -28,8 +29,11 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login setAuthToken={setAuthToken} />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/profile" element={<ProfilePage />} /> {/* Corrected component usage */}
+                <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/HomePage" element={<Homepage />} />
+                <Route path="/create-post" element={<CreatePost />} />
+                <Route path="/posts" element={<ViewPosts />} />
+                
             </Routes>
             <Footer />
         </div>

@@ -116,11 +116,7 @@
 		</dependency>
 
 		<!-- Lombok (Optional) -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
+		
 
 		<!-- Spring Boot Starter Test -->
 		<dependency>
@@ -135,6 +131,11 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		 <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+    </dependency>
+
 	</dependencies>
 
 	<build>

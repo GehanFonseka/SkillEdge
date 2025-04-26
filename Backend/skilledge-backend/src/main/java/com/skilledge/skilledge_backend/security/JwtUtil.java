@@ -20,6 +20,7 @@ public class JwtUtil {
         long currentTimeMillis = System.currentTimeMillis();
         long expirationTime = currentTimeMillis + 1000 * 60 * 60; // 1-hour expiration
 
+        System.out.println(expirationTime); // Debugging line
         // Encode header and payload in Base64
         String header = "{\"alg\":\"HS256\",\"typ\":\"JWT\"}";
         String payload = "{\"sub\":\"" + username + "\",\"iat\":" + currentTimeMillis + ",\"exp\":" + expirationTime + "}";
@@ -94,6 +95,7 @@ public class JwtUtil {
         String decodedPayload = new String(Base64.getUrlDecoder().decode(parts[1]));
         // Extract the expiration time (exp) from the payload
         String expString = decodedPayload.split(",")[2].split(":")[1];
+        System.out.println("Expiration Time: " + expString); // Debugging line
         long expTime = Long.parseLong(expString);
 
         // Check if the token has expired
