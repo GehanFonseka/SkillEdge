@@ -10,9 +10,10 @@ function AddAchievements() {
     postOwnerID: '',
     category: '',
     postOwnerName: '',
-  });
+  });                                     
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
