@@ -135,7 +135,14 @@ function AddLearningPlan() {
 
   return (
     <div className="create-post-page">
+      {/* Top Page Title Section */}
+      <div className="page-header">
+        <h1>Create Learning Plan</h1>
+        <p>Share your learning journey with others</p>
+      </div>
+  
       <NavBar />
+  
       <div className="create-post-main templates-layout">
         <div className="templates-sidebar">
           <h2 className="template-gallery-title">Choose a Template</h2>
@@ -153,7 +160,7 @@ function AddLearningPlan() {
                 <h3 className="preview-title">{title || "Title Preview"}</h3>
                 <div className="preview-meta">
                   <span className="preview-dates">
-                    <HiCalendarDateRange /> 
+                    <HiCalendarDateRange />
                     <span>{startDate || "Start"} to {endDate || "End"}</span>
                   </span>
                   <span className="preview-category">{category || "Category"}</span>
@@ -183,7 +190,7 @@ function AddLearningPlan() {
                 </div>
               </div>
             </div>
-
+  
             {/* Template 2 */}
             <div 
               className={`template-item ${templateID === '2' ? 'template-selected' : ''}`}
@@ -227,7 +234,7 @@ function AddLearningPlan() {
                 </div>
               </div>
             </div>
-
+  
             {/* Template 3 */}
             <div 
               className={`template-item ${templateID === '3' ? 'template-selected' : ''}`}
@@ -269,17 +276,13 @@ function AddLearningPlan() {
             </div>
           </div>
         </div>
-                  
+  
+        {/* Right Section: Form */}
         <div className="create-post-container">
-          <div className="create-post-header">
-            <div className="header-content">
-              <h1>Create Learning Plan</h1>
-              <p>Share your learning journey with others</p>
-            </div>
-            <div className="header-decoration"></div>
-          </div>
-
+          
+  
           <form onSubmit={handleSubmit} className="create-post-form">
+            {/* Form Inputs */}
             <div className="form-floating-group">
               <div className="floating-input">
                 <input
@@ -292,7 +295,7 @@ function AddLearningPlan() {
                 />
                 <label htmlFor="title">Plan Title</label>
               </div>
-
+  
               <div className="floating-input">
                 <textarea
                   id="description"
@@ -304,7 +307,7 @@ function AddLearningPlan() {
                 />
                 <label htmlFor="description">Plan Description</label>
               </div>
-
+  
               <div className="floating-input">
                 <select
                   id="category"
@@ -320,7 +323,7 @@ function AddLearningPlan() {
                 </select>
                 <label htmlFor="category">Select Category</label>
               </div>
-
+  
               <div className="floating-input">
                 <select
                   id="template"
@@ -335,7 +338,7 @@ function AddLearningPlan() {
                 </select>
                 <label htmlFor="template">Select Template</label>
               </div>
-
+  
               <div className="date-inputs">
                 <div className="floating-input">
                   <input
@@ -347,7 +350,7 @@ function AddLearningPlan() {
                   />
                   <label htmlFor="startDate">Start Date</label>
                 </div>
-
+  
                 <div className="floating-input">
                   <input
                     type="date"
@@ -360,7 +363,8 @@ function AddLearningPlan() {
                 </div>
               </div>
             </div>
-
+  
+            {/* Tags Section */}
             <div className="tags-section material-card">
               <div className="tags-header">
                 <h3>Add Tags</h3>
@@ -395,7 +399,8 @@ function AddLearningPlan() {
                 </button>
               </div>
             </div>
-
+  
+            {/* Media Section */}
             <div className="media-section material-card">
               <div className="media-header">
                 <h3>Add Media</h3>
@@ -419,7 +424,7 @@ function AddLearningPlan() {
                   <span>Add Image</span>
                 </button>
               </div>
-
+  
               {showContentURLInput && (
                 <div className="material-url-input">
                   <input
@@ -442,7 +447,7 @@ function AddLearningPlan() {
                   )}
                 </div>
               )}
-
+  
               {showImageUploadInput && (
                 <div className="material-upload-section">
                   <input
@@ -483,7 +488,7 @@ function AddLearningPlan() {
                 </div>
               )}
             </div>
-
+  
             <button type="submit" className="publish-button" disabled={isSubmitting}>
               {isSubmitting ? 'Publishing...' : 'Publish Learning Plan'}
             </button>
@@ -492,6 +497,7 @@ function AddLearningPlan() {
       </div>
     </div>
   );
+  
 }
 
 export default AddLearningPlan;
