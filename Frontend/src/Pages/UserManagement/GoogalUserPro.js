@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaBook, FaShare, FaTrophy } from 'react-icons/fa';
 import './UserProfile.css'
 import Pro from './img/img.png';
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 
 export const fetchUserDetails = async (userId) => {
     try {

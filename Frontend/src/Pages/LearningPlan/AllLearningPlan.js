@@ -4,7 +4,7 @@ import './post.css';
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { IoIosCreate } from "react-icons/io";
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import { HiCalendarDateRange } from "react-icons/hi2";
 import { 
   Box, 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import './AddNewPost.css';
 
 function AddNewPost() {
