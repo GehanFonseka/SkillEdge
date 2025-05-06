@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './notification.css'
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import { MdOutlineMarkChatRead } from "react-icons/md";
 
 function NotificationsPage() {

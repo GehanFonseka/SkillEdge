@@ -6,7 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { BiSolidLike } from "react-icons/bi";
 import Modal from 'react-modal';
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import { IoIosCreate } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { GrUpdate } from "react-icons/gr";
