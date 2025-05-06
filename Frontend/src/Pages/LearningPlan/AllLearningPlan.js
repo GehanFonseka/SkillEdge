@@ -6,9 +6,9 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { IoIosCreate } from "react-icons/io";
 import NavBar from '../../Components/NavBar/NavBar';
 import { HiCalendarDateRange } from "react-icons/hi2";
-import { 
-  Box, 
-  Paper, 
+import {
+  Box,
+  Paper,
   Typography,
   TextField,
   InputAdornment,
@@ -40,6 +40,7 @@ function AllLearningPlan() {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [searchOwnerName, setSearchOwnerName] = useState('');
+  const [searchCategory, setSearchCategory] = useState('');
   const userId = localStorage.getItem('userID');
 
   useEffect(() => {
@@ -47,14 +48,21 @@ function AllLearningPlan() {
       try {
         const response = await axios.get('http://localhost:8080/learningPlan');
         setPosts(response.data);
-        setFilteredPosts(response.data); // Initially show all posts
+        setFilteredPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
     };
-
     fetchPosts();
-  }, []); // Ensure this runs only once on component mount
+  }, []);
+
+  const applyFilters = (ownerName, category) => {
+    const filtered = posts.filter((post) =>
+      post.postOwnerName.toLowerCase().includes(ownerName.toLowerCase()) &&
+      post.category.toLowerCase().includes(category.toLowerCase())
+    );
+    setFilteredPosts(filtered);
+  };
 
   const getEmbedURL = (url) => {
     try {
@@ -66,10 +74,10 @@ function AllLearningPlan() {
         const videoId = url.split('youtu.be/')[1];
         return `https://www.youtube.com/embed/${videoId}`;
       }
-      return url; // Return the original URL if it's not a YouTube link
+      return url;
     } catch (error) {
       console.error('Invalid URL:', url);
-      return ''; // Return an empty string for invalid URLs
+      return '';
     }
   };
 
@@ -79,7 +87,7 @@ function AllLearningPlan() {
       try {
         await axios.delete(`http://localhost:8080/learningPlan/${id}`);
         alert('Post deleted successfully!');
-        setFilteredPosts(filteredPosts.filter((post) => post.id !== id)); // Update the list after deletion
+        setFilteredPosts(filteredPosts.filter((post) => post.id !== id));
       } catch (error) {
         console.error('Error deleting post:', error);
         alert('Failed to delete post.');
@@ -92,13 +100,7 @@ function AllLearningPlan() {
   };
 
   const renderPostByTemplate = (post) => {
-    console.log('Rendering post:', post); // Debugging: Log the post object
-    if (!post.templateID) { // Use the correct field name
-      console.warn('Missing templateID for post:', post); // Warn if templateID is missing
-      return <div className="template template-default">Invalid template ID</div>;
-    }
-
-    switch (post.templateID) { // Use the correct field name
+    switch (post.templateID) {
       case 1:
         return (
           <div className="template_dis template-1">
@@ -108,20 +110,17 @@ function AllLearningPlan() {
                   <p className='name_section_post_owner_name'>{post.postOwnerName}</p>
                 </div>
               </div>
-              {post.postOwnerID === localStorage.getItem('userID') && (
+              {post.postOwnerID === userId && (
                 <div className='action_btn_icon_post'>
-                  <FaEdit
-                    onClick={() => handleUpdate(post.id)} className='action_btn_icon' />
-                  <RiDeleteBin6Fill
-                    onClick={() => handleDelete(post.id)}
-                    className='action_btn_icon' />
+                  <FaEdit onClick={() => handleUpdate(post.id)} className='action_btn_icon' />
+                  <RiDeleteBin6Fill onClick={() => handleDelete(post.id)} className='action_btn_icon' />
                 </div>
               )}
             </div>
             <p className='template_title'>{post.title}</p>
-            <p className='template_dates'><HiCalendarDateRange /> {post.startDate} to {post.endDate} </p>
+            <p className='template_dates'><HiCalendarDateRange /> {post.startDate} to {post.endDate}</p>
             <p className='template_description'>{post.category}</p>
-            <hr></hr>
+            <hr />
             <p className='template_description' style={{ whiteSpace: "pre-line" }}>{post.description}</p>
             <div className="tags_preview">
               {post.tags?.map((tag, index) => (
@@ -129,20 +128,10 @@ function AllLearningPlan() {
               ))}
             </div>
             {post.imageUrl && (
-              <img
-                src={`http://localhost:8080/learningPlan/planImages/${post.imageUrl}`}
-                alt={post.title}
-                className="iframe_preview_dis"
-              />
+              <img src={`http://localhost:8080/learningPlan/planImages/${post.imageUrl}`} alt={post.title} className="iframe_preview_dis" />
             )}
             {post.contentURL && (
-              <iframe
-                src={getEmbedURL(post.contentURL)}
-                title={post.title}
-                className="iframe_preview_dis"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
+              <iframe src={getEmbedURL(post.contentURL)} title={post.title} className="iframe_preview_dis" frameBorder="0" allowFullScreen></iframe>
             )}
           </div>
         );
@@ -154,22 +143,18 @@ function AllLearningPlan() {
                 <div className='name_section_post'>
                   <p className='name_section_post_owner_name'>{post.postOwnerName}</p>
                 </div>
-                
               </div>
-              {post.postOwnerID === localStorage.getItem('userID') && (
+              {post.postOwnerID === userId && (
                 <div className='action_btn_icon_post'>
-                  <FaEdit
-                    onClick={() => handleUpdate(post.id)} className='action_btn_icon' />
-                  <RiDeleteBin6Fill
-                    onClick={() => handleDelete(post.id)}
-                    className='action_btn_icon' />
+                  <FaEdit onClick={() => handleUpdate(post.id)} className='action_btn_icon' />
+                  <RiDeleteBin6Fill onClick={() => handleDelete(post.id)} className='action_btn_icon' />
                 </div>
               )}
             </div>
             <p className='template_title'>{post.title}</p>
-            <p className='template_dates'><HiCalendarDateRange /> {post.startDate} to {post.endDate} </p>
+            <p className='template_dates'><HiCalendarDateRange /> {post.startDate} to {post.endDate}</p>
             <p className='template_description'>{post.category}</p>
-            <hr></hr>
+            <hr />
             <p className='template_description' style={{ whiteSpace: "pre-line" }}>{post.description}</p>
             <div className="tags_preview">
               {post.tags?.map((tag, index) => (
@@ -179,22 +164,12 @@ function AllLearningPlan() {
             <div className='preview_part'>
               <div className='preview_part_sub'>
                 {post.imageUrl && (
-                  <img
-                    src={`http://localhost:8080/learningPlan/planImages/${post.imageUrl}`}
-                    alt={post.title}
-                    className="iframe_preview"
-                  />
+                  <img src={`http://localhost:8080/learningPlan/planImages/${post.imageUrl}`} alt={post.title} className="iframe_preview" />
                 )}
               </div>
               <div className='preview_part_sub'>
                 {post.contentURL && (
-                  <iframe
-                    src={getEmbedURL(post.contentURL)}
-                    title={post.title}
-                    className="iframe_preview"
-                    frameBorder="0"
-                    allowFullScreen
-                  ></iframe>
+                  <iframe src={getEmbedURL(post.contentURL)} title={post.title} className="iframe_preview" frameBorder="0" allowFullScreen></iframe>
                 )}
               </div>
             </div>
@@ -208,38 +183,24 @@ function AllLearningPlan() {
                 <div className='name_section_post'>
                   <p className='name_section_post_owner_name'>{post.postOwnerName}</p>
                 </div>
-                
               </div>
-              {post.postOwnerID === localStorage.getItem('userID') && (
+              {post.postOwnerID === userId && (
                 <div className='action_btn_icon_post'>
-                  <FaEdit
-                    onClick={() => handleUpdate(post.id)} className='action_btn_icon' />
-                  <RiDeleteBin6Fill
-                    onClick={() => handleDelete(post.id)}
-                    className='action_btn_icon' />
+                  <FaEdit onClick={() => handleUpdate(post.id)} className='action_btn_icon' />
+                  <RiDeleteBin6Fill onClick={() => handleDelete(post.id)} className='action_btn_icon' />
                 </div>
               )}
             </div>
             {post.imageUrl && (
-              <img
-                src={`http://localhost:8080/learningPlan/planImages/${post.imageUrl}`}
-                alt={post.title}
-                className="iframe_preview_dis"
-              />
+              <img src={`http://localhost:8080/learningPlan/planImages/${post.imageUrl}`} alt={post.title} className="iframe_preview_dis" />
             )}
             {post.contentURL && (
-              <iframe
-                src={getEmbedURL(post.contentURL)}
-                title={post.title}
-                className="iframe_preview_dis"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
+              <iframe src={getEmbedURL(post.contentURL)} title={post.title} className="iframe_preview_dis" frameBorder="0" allowFullScreen></iframe>
             )}
             <p className='template_title'>{post.title}</p>
-            <p className='template_dates'><HiCalendarDateRange /> {post.startDate} to {post.endDate} </p>
+            <p className='template_dates'><HiCalendarDateRange /> {post.startDate} to {post.endDate}</p>
             <p className='template_description'>{post.category}</p>
-            <hr></hr>
+            <hr />
             <p className='template_description' style={{ whiteSpace: "pre-line" }}>{post.description}</p>
             <div className="tags_preview">
               {post.tags?.map((tag, index) => (
@@ -249,7 +210,6 @@ function AllLearningPlan() {
           </div>
         );
       default:
-        console.warn('Unknown templateID:', post.templateID); // Warn if templateID is unexpected
         return (
           <div className="template template-default">
             <p>Unknown template ID: {post.templateID}</p>
@@ -261,8 +221,8 @@ function AllLearningPlan() {
   return (
     <Box>
       <NavBar />
-      <Box sx={{ 
-        display: 'flex', 
+      <Box sx={{
+        display: 'flex',
         bgcolor: '#ffffff',
         minHeight: 'calc(100vh - 64px)'
       }}>
@@ -270,18 +230,15 @@ function AllLearningPlan() {
         <Box sx={{ width: '400px', flexShrink: 0 }}>
           <StyledSearchBar elevation={0}>
             <Typography variant="h6" sx={{ mb: 2 }}>Search Learning Plans</Typography>
+            
             <TextField
               fullWidth
-              placeholder="Search by owner name"
-              value={searchOwnerName}
+              placeholder="Search by Category"
+              value={searchCategory}
               onChange={(e) => {
                 const value = e.target.value;
-                setSearchOwnerName(value);
-                setFilteredPosts(
-                  posts.filter((post) =>
-                    post.postOwnerName.toLowerCase().includes(value.toLowerCase())
-                  )
-                );
+                setSearchCategory(value);
+                applyFilters(searchOwnerName, value);
               }}
               variant="outlined"
               InputProps={{
