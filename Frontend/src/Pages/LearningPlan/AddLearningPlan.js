@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { IoMdAdd } from "react-icons/io";
 import './Templates.css';
 import '../PostManagement/AddNewPost.css'; // Import AddNewPost styles
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import { FaVideo, FaImage } from "react-icons/fa";
 import { HiCalendarDateRange } from "react-icons/hi2";
 

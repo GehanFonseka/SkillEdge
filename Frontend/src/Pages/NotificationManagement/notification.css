@@ -1,32 +1,221 @@
-.noty_topic {
-  font-size: 22px;
-  font-weight: 500;
-  color: #000;
-  text-transform: capitalize;
-}
-.noty_time {
-  font-size: 14px;
-  font-weight: 400;
-  color: #000;
-  text-transform: capitalize;
-  font-style: italic;
+:root {
+  --primary: #00d4ff;
+  --primary-light: #64f5ff;
+  --secondary: #7000ff;
+  --background: #0a0a1a;
+  --surface: rgba(16, 16, 32, 0.95);
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --danger: #ef4444; /* Changed from #ff3860 to a softer red */
+  --success: #00ffa3;
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0 0 10px rgba(0, 212, 255, 0.1);
+  --shadow-md: 0 0 20px rgba(0, 212, 255, 0.15);
+  --shadow-lg: 0 0 30px rgba(0, 212, 255, 0.2);
+  --neon-glow: 0 0 20px var(--primary);
 }
 
-.mark_redbtn {
-  background-color: #004c5d;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.continer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--background) 0%, #141432 100%);
+  padding-top: 90px;
 }
-.noty_action_btn_con{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
+
+.continSection {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.post_card_continer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.post_card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border);
+  position: relative;
+  backdrop-filter: blur(10px);
+  min-height: 100px;
+  animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.post_card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 20px;
+}
+
+.post_card:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.post_card:hover::before {
+  opacity: 0;
+}
+
+.unread {
+  border-left: 4px solid var(--primary);
+  background: linear-gradient(to right, rgba(0, 212, 255, 0.1), transparent);
+  box-shadow: var(--neon-glow);
+}
+
+.read {
+  opacity: 0.8;
+}
+
+.continer_set {
+  flex: 1;
+  position: relative;
+}
+
+.noty_topic {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+.noty_time {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.noty_action_btn_con {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-left: auto;
+}
+
+.notification_action_btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  min-height: 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.notification_action_btn.mark_read_btn {
+  color: var(--success);
+}
+
+.notification_action_btn.delete_btn {
+  color: var(--danger);
+}
+
+.btn_icon {
+  pointer-events: none;
+}
+
+.delete_btn {
+  color: var(--danger);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Add hover effect for delete button */
+.delete_btn:hover {
+  transform: scale(1.1);
+  background: rgba(239, 68, 68, 0.1);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+/* Remove hover effect border */
+.notification_action_btn::before {
+  display: none;
+}
+
+/* Remove only the transform from hover states */
+.notification_action_btn:hover,
+.mark_read_btn:hover,
+.delete_btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.not_found_box {
+  text-align: center;
+  padding: 5rem 3rem;
+  background: var(--surface);
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.not_found_img {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 3rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9'%3E%3C/path%3E%3C/svg%3E");
+  opacity: 0.7;
+  filter: drop-shadow(0 0 10px var(--primary));
+}
+
+.not_found_msg {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-shadow: 0 0 10px var(--primary);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .continSection {
+    padding: 1.5rem;
+  }
+
+  .post_card {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .noty_topic {
+    font-size: 1.1rem;
+  }
+
+  .noty_action_btn_con {
     width: 100%;
+    justify-content: flex-end;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+  }
 }

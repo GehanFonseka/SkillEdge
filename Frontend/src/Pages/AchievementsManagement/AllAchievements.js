@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import { IoIosCreate } from "react-icons/io";
 import { 
   Box, 

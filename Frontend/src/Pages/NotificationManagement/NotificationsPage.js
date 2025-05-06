@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './notification.css'
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import { MdOutlineMarkChatRead } from "react-icons/md";
 
 function NotificationsPage() {
@@ -64,11 +64,22 @@ function NotificationsPage() {
                     <p className='noty_time'>{new Date(notification.createdAt).toLocaleString()}</p>
                   </div>
                   <div className='noty_action_btn_con'>
-                    <MdOutlineMarkChatRead onClick={() => handleMarkAsRead(notification.id)}
-                      style={{ display: notification.read ? 'none' : 'inline-block' }} className='action_btn_icon' />
-                    <RiDeleteBin6Fill
+                    {!notification.read && (
+                      <button 
+                        onClick={() => handleMarkAsRead(notification.id)}
+                        className='notification_action_btn mark_read_btn'
+                        type="button"
+                      >
+                        <MdOutlineMarkChatRead size={35} className='btn_icon' />
+                      </button>
+                    )}
+                    <button
                       onClick={() => handleDelete(notification.id)}
-                      className='action_btn_icon' />
+                      className='notification_action_btn delete_btn'
+                      type="button"
+                    >
+                      <RiDeleteBin6Fill size={35} className='btn_icon' />
+                    </button>
                   </div>
                 </div>
               ))
