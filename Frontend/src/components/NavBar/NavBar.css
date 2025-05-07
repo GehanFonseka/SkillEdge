@@ -44,9 +44,9 @@
 
 /* Logo Styling */
 .side_logoo {
-  background-image: url("./img/logocover.png");
-  width: 180px;
-  height: 50px;
+  background-image: url("./img/skill.png");
+  width: 200px;
+  height: 500px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
