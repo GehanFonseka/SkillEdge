@@ -610,15 +610,17 @@ function AllPost() {
       <NavBar />
       <Box sx={{ 
         display: 'flex', 
-        bgcolor: '#ffffff', // Changed from '#f5f5f5' to white
+        bgcolor: '#1e293b', // Changed from '#f5f5f5' to white
         minHeight: 'calc(100vh - 64px)' // Adjust based on navbar height
       }}>
         {/* Left side - Search */}
-        <Box sx={{ width: '400px', flexShrink: 0 }}> {/* Changed from 300px to 400px */}
+        <Box sx={{ width: '400px', flexShrink: 0 ,bgcolor: '#1e293b'}}> {/* Changed from 300px to 400px */}
           <StyledSearchBar elevation={0}>
             <Typography 
+
               variant="h6" 
               sx={{ 
+            
                 mb: 2,
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600 
