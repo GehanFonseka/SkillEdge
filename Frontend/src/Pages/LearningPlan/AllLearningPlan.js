@@ -224,7 +224,8 @@ function AllLearningPlan() {
       <Box sx={{
         display: 'flex',
         bgcolor: '#ffffff',
-        minHeight: 'calc(100vh - 64px)'
+        minHeight: 'calc(100vh - 64px)',
+        
       }}>
         {/* Left side - Search */}
         <Box sx={{ width: '400px', flexShrink: 0 }}>

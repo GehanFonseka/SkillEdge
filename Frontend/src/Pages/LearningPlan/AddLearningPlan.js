@@ -135,7 +135,6 @@ function AddLearningPlan() {
 
   return (
     <div className="create-post-page">
-      {/* Top Page Title Section */}
       <div className="page-header">
         <h1>Create Learning Plan</h1>
         <p>Share your learning journey with others</p>

@@ -365,7 +365,7 @@
 }
 
 .create-post-container {
-  flex: 0 0 800px; /* Increase from previous value */
+  flex: 0 0 800px; 
   padding: 2rem;
   background: #fff;
   border-radius: 12px;

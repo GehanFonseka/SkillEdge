@@ -93,7 +93,12 @@ function AddNewPost() {
           <div className="create-post-header">
             <div className="header-content">
               <h1>Create Your Story</h1>
-              <p>Share your ideas with the world</p>
+              <p className="main-subtitle"></p>
+              <div className="header-description">
+                <p className="feature-text">✨ Express yourself through words </p>
+                <p className="feature-text">🌟 Connect with readers worldwide</p>
+                <p className="feature-text">💡 Share your knowledge and experiences</p>
+              </div>
             </div>
             <div className="header-decoration"></div>
           </div>
@@ -101,43 +106,43 @@ function AddNewPost() {
           <form onSubmit={handleSubmit} className="create-post-form">
             <div className="form-floating-group">
               <div className="floating-input">
+                <label className="input-label" htmlFor="title">Post Title</label>
                 <input
                   type="text"
                   id="title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
-                  placeholder=" "
+                  placeholder="Enter your post title"
                 />
-                <label htmlFor="title">Post Title</label>
               </div>
 
               <div className="floating-input">
+                <label className="input-label" htmlFor="description">Write your story</label>
                 <textarea
                   id="description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   required
-                  placeholder=" "
+                  placeholder="Share your thoughts..."
                   rows={6}
                 />
-                <label htmlFor="description">Write your story...</label>
               </div>
 
               <div className="floating-input">
+                <label className="input-label" htmlFor="category">Category</label>
                 <select
                   id="category"
                   value={categories}
                   onChange={(e) => setCategories(e.target.value)}
                   required
                 >
-                  <option value="" disabled></option>
+                  <option value="" disabled>Select a category</option>
                   <option value="Tech">Tech</option>
                   <option value="Programming">Programming</option>
                   <option value="Cooking">Cooking</option>
                   <option value="Photography">Photography</option>
                 </select>
-                <label htmlFor="category">Select Category</label>
               </div>
             </div>
 
