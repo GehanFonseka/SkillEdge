@@ -29,7 +29,10 @@ public class SecurityConfig {
                                 "/uploads/profile/**",
                                 "/learningPlan/**",
                                 "/achievements/**",
-                                "/notifications/**"
+                                "/notifications/**",
+                                "/progress-updates/**",
+                                "/progress-updates/plan/**",
+                                "/progress-updates/user/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -39,14 +42,16 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:3000"); // Allow requests from the frontend
-        config.addAllowedMethod("*"); // Allow all HTTP methods
-        config.addAllowedHeader("*"); // Allow all headers
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
-    }
+        @Bean
+        public CorsFilter corsFilter() {
+                CorsConfiguration configuration = new CorsConfiguration();
+                configuration.setAllowCredentials(true);
+                configuration.addAllowedOrigin("http://localhost:3000"); // Allow your frontend URL
+                configuration.addAllowedMethod("*"); // Allow all HTTP methods
+                configuration.addAllowedHeader("*"); // Allow all headers
+
+                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                source.registerCorsConfiguration("/**", configuration); // Apply CORS configuration to all paths
+                return new CorsFilter(source);
+        }
 }

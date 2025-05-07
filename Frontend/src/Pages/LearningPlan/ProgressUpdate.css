@@ -1,0 +1,409 @@
+/* Modern Variables - 2050 Theme */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --neon-primary: #00ffbb;
+  --neon-secondary: #4d6fff;
+  --surface-dark: #0a0b1e;
+  --surface-light: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --success: #00ffa3;
+  --error: #ff416c;
+  --gradient: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+  --shadow-neon: 0 0 20px rgba(0, 255, 187, 0.3);
+}
+
+.progress-update-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0b1e 0%, #1a1b3d 100%);
+  padding: 80px 20px 20px;
+  color: var(--text-primary);
+}
+
+.progress-update-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.progress-update-container h1 {
+  font-size: 2.5rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.progress-update-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Modern Progress Group Styling */
+.form-group {
+  position: relative;
+  margin: 2rem 0;
+}
+
+/* Label Styling */
+.form-group label[for="completionPercentage"] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Percentage Value Styling */
+.percentage-value {
+  display: inline-block;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 4px 12px;
+  border-radius: 8px;
+  position: relative;
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Range Input Base Styling */
+.form-group input[type="range"] {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  -webkit-appearance: none;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Range Track Styling */
+.form-group input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 8px;
+  background: linear-gradient(
+    to right,
+    var(--neon-primary) 0%,
+    var(--neon-primary) var(--value, 0%),
+    rgba(255, 255, 255, 0.1) var(--value, 0%)
+  );
+}
+
+/* Range Thumb Styling */
+.form-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--neon-primary);
+  border: 3px solid var(--surface-dark);
+  border-radius: 50%;
+  margin-top: -8px;
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--neon-primary);
+  transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.form-group input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 25px var(--neon-primary);
+}
+
+/* Progress Animation */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 255, 187, 0.5),
+                 0 0 20px rgba(0, 255, 187, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(0, 255, 187, 0.8),
+                 0 0 25px rgba(0, 255, 187, 0.5);
+  }
+}
+
+/* Firefox Support */
+.form-group input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 8px;
+  background: linear-gradient(
+    to right,
+    var(--neon-primary) 0%,
+    var(--neon-primary) var(--value, 0%),
+    rgba(255, 255, 255, 0.1) var(--value, 0%)
+  );
+}
+
+.form-group input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: var(--neon-primary);
+  border: 3px solid var(--surface-dark);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--neon-primary);
+  transition: all 0.3s ease;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Modern Select Styling */
+.form-group select {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-image: linear-gradient(45deg, transparent 50%, var(--neon-primary) 50%),
+                    linear-gradient(135deg, var(--neon-primary) 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+                      calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px,
+                  5px 5px;
+  background-repeat: no-repeat;
+}
+
+.form-group select:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-neon);
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: var(--neon-primary);
+  box-shadow: var(--shadow-neon);
+}
+
+/* Add these new styles for dropdown options */
+.form-group select option {
+  background-color: var(--surface-dark);
+  color: var(--text-primary);
+  padding: 12px;
+}
+
+/* Add hover state for options */
+.form-group select option:hover,
+.form-group select option:focus,
+.form-group select option:active,
+.form-group select option:checked {
+  background: linear-gradient(135deg, #1a1b3d 0%, #2a2b5d 100%);
+  color: var(--neon-primary);
+}
+
+/* Textarea Styling */
+.form-group textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--neon-primary);
+  box-shadow: var(--shadow-neon);
+}
+
+/* Input Styling */
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Range Input Styling */
+.form-group input[type="range"] {
+  width: 100%;
+  height: 4px;
+  background: var(--glass-border);
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.form-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--neon-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--neon-primary);
+  transition: all 0.3s ease;
+}
+
+.form-group input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Submit Button */
+.submit-btn {
+  background: var(--gradient);
+  color: var(--surface-dark);
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.submit-btn:hover::before {
+  left: 100%;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 255, 187, 0.5);
+}
+
+/* Progress Bar Styling */
+.completion-bar {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.completion-fill {
+  height: 100%;
+  background: var(--gradient);
+  box-shadow: var(--shadow-neon);
+  transition: width 0.5s ease;
+}
+
+.completion-text {
+  position: relative;
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: neonPulse 2s infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 255, 187, 0.5),
+                 0 0 20px rgba(0, 255, 187, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(0, 255, 187, 0.7),
+                 0 0 25px rgba(0, 255, 187, 0.5);
+  }
+}
+
+/* Progress Bar Color Zones */
+.completion-fill[data-progress="low"] {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+}
+
+.completion-fill[data-progress="medium"] {
+  background: linear-gradient(90deg, #f7971e, #ffd200);
+}
+
+.completion-fill[data-progress="high"] {
+  background: linear-gradient(90deg, #00ffbb, #4d6fff);
+}
+
+/* Progress Text Color Zones */
+.completion-text[data-progress="low"] {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.completion-text[data-progress="medium"] {
+  background: linear-gradient(90deg, #f7971e, #ffd200);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.completion-text[data-progress="high"] {
+  background: linear-gradient(90deg, #00ffbb, #4d6fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animation */
+@keyframes neonGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 255, 187, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 187, 0.5);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .progress-update-container {
+    padding: 1.5rem;
+  }
+
+  .progress-update-container h1 {
+    font-size: 2rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
