@@ -111,9 +111,9 @@ function AllAchievements() {
         minHeight: 'calc(100vh - 64px)'
       }}>
         {/* Left side - Search */}
-        <Box sx={{ width: '400px', flexShrink: 0 }}>
-          <StyledSearchBar elevation={0}>
-            <Typography variant="h6" sx={{ mb: 2 }}>Search Achievements</Typography>
+        <Box sx={{ width: '400px', flexShrink: 0, mt: -9 }}>
+        <StyledSearchBar elevation={0} sx={{ bgcolor: '#0F172A', color: '#ffffff' }}> {/* Updated background and text color */}
+<Typography variant="h6" sx={{ mb: 2, color: '#10b981' }}> {/* Updated text color */}Search Achievements</Typography>
             <TextField
               fullWidth
               placeholder="Search by title or description"
@@ -123,11 +123,31 @@ function AllAchievements() {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon sx={{ color: 'text.secondary' }} />
+                    <SearchIcon sx={{ color: '#10b981'}} />
                   </InputAdornment>
-                )
+                ),
+                style: { color: '#ffffff' } // Updated input text color
               }}
-              sx={{ mb: 2 }}
+              sx={{
+                mb: 2,
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: '#10b981', // Updated border color
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#047857', // Updated hover border color
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#10b981', // Updated focus border color
+                  },
+                },
+                '& .MuiInputBase-input': {
+                  color: '#ffffff', // Updated input text color
+                },
+                '& .MuiInputLabel-root': {
+                  color: '#ffffff', // Updated placeholder text color
+                },
+              }}
             />
           </StyledSearchBar>
         </Box>

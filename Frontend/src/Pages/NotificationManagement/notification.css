@@ -17,12 +17,13 @@
 
 .continer {
   min-height: 100vh;
+  min-width: 100vw;
   background: linear-gradient(135deg, var(--background) 0%, #141432 100%);
   padding-top: 90px;
 }
 
 .continSection {
-  max-width: 1000px;
+  max-width: 100px;
   margin: 0 auto;
   padding: 2rem;
 }

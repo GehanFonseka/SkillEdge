@@ -613,36 +613,50 @@ function AllPost() {
         bgcolor: '#ffffff', // Changed from '#f5f5f5' to white
         minHeight: 'calc(100vh - 64px)' // Adjust based on navbar height
       }}>
-        {/* Left side - Search */}
-        <Box sx={{ width: '400px', flexShrink: 0 }}> {/* Changed from 300px to 400px */}
-          <StyledSearchBar elevation={0}>
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                mb: 2,
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 600 
-              }}
-            >
-              Search Posts
-            </Typography>
-            <TextField
-              fullWidth
-              placeholder="Search by title, description, or category"
-              value={searchQuery}
-              onChange={handleSearch}
-              variant="outlined"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon sx={{ color: 'text.secondary' }} />
-                  </InputAdornment>
-                )
-              }}
-              sx={{ mb: 2 }}
-            />
-          </StyledSearchBar>
-        </Box>
+{/* Left side - Search */}
+
+<Box sx={{ width: '400px', flexShrink: 0, mt: -9}}>
+  <StyledSearchBar elevation={0} sx={{ bgcolor: '#0F172A', color: '#ffffff' }}> {/* Updated background and text color */}
+    <Typography variant="h6" sx={{ mb: 2, color: '#10b981' }}> {/* Updated text color */}
+      Search Posts
+    </Typography>
+    <TextField
+      fullWidth
+      placeholder="Search by title, description, or category"
+      value={searchQuery}
+      onChange={handleSearch}
+      variant="outlined"
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon sx={{ color: '#10b981' }} /> {/* Updated icon color */}
+          </InputAdornment>
+        ),
+        style: { color: '#ffffff' } // Updated input text color
+      }}
+      sx={{
+        mb: 2,
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: '#10b981', // Updated border color
+          },
+          '&:hover fieldset': {
+            borderColor: '#047857', // Updated hover border color
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#10b981', // Updated focus border color
+          },
+        },
+        '& .MuiInputBase-input': {
+          color: '#ffffff', // Updated input text color
+        },
+        '& .MuiInputLabel-root': {
+          color: '#ffffff', // Updated placeholder text color
+        },
+      }}
+    />
+  </StyledSearchBar>
+</Box>
 
         {/* Right side - Posts */}
         <PostsContainer>
