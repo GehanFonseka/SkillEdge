@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "progressUpdates")
+
 public class ProgressUpdateModel {
     @Id
     private String id;
