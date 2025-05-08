@@ -228,30 +228,51 @@ function AllLearningPlan() {
         
       }}>
         {/* Left side - Search */}
-        <Box sx={{ width: '400px', flexShrink: 0 }}>
-          <StyledSearchBar elevation={0}>
-            <Typography variant="h6" sx={{ mb: 2 }}>Search Learning Plans</Typography>
-            
-            <TextField
-              fullWidth
-              placeholder="Search by Category"
-              value={searchCategory}
-              onChange={(e) => {
-                const value = e.target.value;
-                setSearchCategory(value);
-                applyFilters(searchOwnerName, value);
-              }}
-              variant="outlined"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon sx={{ color: 'text.secondary' }} />
-                  </InputAdornment>
-                )
-              }}
-            />
-          </StyledSearchBar>
-        </Box>
+        <Box sx={{ width: '400px', flexShrink: 0, mt: -5 }}>
+  <StyledSearchBar elevation={0} sx={{ bgcolor: '#0F172A', color: '#ffffff' }}>
+    <Typography variant="h6" sx={{ mb: 2, color: '#ffffff' }}>
+      Search Learning Plans
+    </Typography>
+    <TextField
+      fullWidth
+      placeholder="Search by Category"
+      value={searchCategory}
+      onChange={(e) => {
+        const value = e.target.value;
+        setSearchCategory(value);
+        applyFilters(searchOwnerName, value);
+      }}
+      variant="outlined"
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon sx={{ color: '#ffffff' }} /> {/* White search icon */}
+          </InputAdornment>
+        ),
+        style: { color: '#ffffff' }, // White input text
+      }}
+      sx={{
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: '#ffffff', // White border
+          },
+          '&:hover fieldset': {
+            borderColor: '#10b981', // Green border on hover
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#10b981', // Green border on focus
+          },
+        },
+        '& .MuiInputBase-input': {
+          color: '#ffffff', // White input text
+        },
+        '& .MuiInputLabel-root': {
+          color: '#ffffff', // White placeholder text
+        },
+      }}
+    />
+  </StyledSearchBar>
+</Box>
 
         {/* Right side - Posts */}
         <PostsContainer>

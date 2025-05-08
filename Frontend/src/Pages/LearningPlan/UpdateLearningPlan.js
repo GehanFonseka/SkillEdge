@@ -177,6 +177,7 @@ function UpdateLearningPost() {
           <form onSubmit={handleSubmit} className="create-post-form">
             <div className="form-floating-group">
               <div className="floating-input">
+              <label htmlFor="title">Plan Title</label>
                 <input
                   type="text"
                   id="title"
@@ -185,10 +186,11 @@ function UpdateLearningPost() {
                   required
                   placeholder=" "
                 />
-                <label htmlFor="title">Plan Title</label>
+                
               </div>
 
               <div className="floating-input">
+              <label htmlFor="description">Plan Description</label>
                 <textarea
                   id="description"
                   value={description}
@@ -197,10 +199,11 @@ function UpdateLearningPost() {
                   placeholder=" "
                   rows={6}
                 />
-                <label htmlFor="description">Plan Description</label>
+                
               </div>
 
               <div className="floating-input">
+              <label htmlFor="category">Select Category</label>
                 <select
                   id="category"
                   value={category}
@@ -213,11 +216,12 @@ function UpdateLearningPost() {
                   <option value="Cooking">Cooking</option>
                   <option value="Photography">Photography</option>
                 </select>
-                <label htmlFor="category">Select Category</label>
+                
               </div>
 
               <div className="date-inputs">
                 <div className="floating-input">
+                <label htmlFor="startDate">Start Date</label>
                   <input
                     type="date"
                     id="startDate"
@@ -225,10 +229,11 @@ function UpdateLearningPost() {
                     onChange={(e) => setStartDate(e.target.value)}
                     required
                   />
-                  <label htmlFor="startDate">Start Date</label>
+                  
                 </div>
 
                 <div className="floating-input">
+                <label htmlFor="endDate">End Date</label>
                   <input
                     type="date"
                     id="endDate"
@@ -236,7 +241,7 @@ function UpdateLearningPost() {
                     onChange={(e) => setEndDate(e.target.value)}
                     required
                   />
-                  <label htmlFor="endDate">End Date</label>
+                  
                 </div>
               </div>
             </div>

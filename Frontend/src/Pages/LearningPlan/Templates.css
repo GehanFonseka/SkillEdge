@@ -72,7 +72,7 @@
 }
 
 .template-3 {
-  background-color: #e3f2fd;
+  background-color: #fce4ec;
   border: 2px solid #2196f3;
 }
 
@@ -365,7 +365,7 @@
 }
 
 .create-post-container {
-  flex: 0 0 800px; 
+  flex: 0 0 800px; /* Increase from previous value */
   padding: 2rem;
   background: #fff;
   border-radius: 12px;
@@ -449,8 +449,10 @@
   padding: 12px 16px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: border-color 0.2s;
+  height: 60px;
+  margin-top: 5px;
 }
 
 .material-input:focus {
@@ -459,13 +461,95 @@
 }
 
 .material-add-btn {
-  background: linear-gradient(135deg, #10b981, #047857);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  width: 48px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid #0ff;
+  background: rgba(0, 255, 255, 0.1);
+  color: #0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 2rem;
   cursor: pointer;
-  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  margin-bottom: 10px;
+}
+
+.material-add-btn::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(45deg, #0ff, #f0f);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.material-add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+}
+
+.material-add-btn:hover::before {
+  opacity: 1;
+  animation: borderRotate 4s linear infinite;
+}
+
+.material-add-btn .material-icon {
+  font-size: 24px;
+  transition: all 0.3s ease;
+  animation: pulse2050 2s infinite;
+}
+
+.material-add-btn:hover .material-icon {
+  transform: rotate(180deg) scale(1.2);
+  animation: rotateAndPulse 1.5s infinite;
+}
+
+@keyframes borderRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse2050 {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.2);
+    filter: brightness(1.5) drop-shadow(0 0 10px #0ff);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes rotateAndPulse {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 
 /* Media Section */

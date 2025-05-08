@@ -93,7 +93,7 @@
 }
 .not_found_btn {
   cursor: pointer;
-  background: linear-gradient(135deg, #10b981, #047857);
+  background: linear-gradient(135deg, #059669, #059669);
    color: white;
   padding: 10px 20px;
   border-radius: 6px;
@@ -116,7 +116,7 @@
 }
 .add_new_btn {
   cursor: pointer;
-  background: linear-gradient(135deg, #10b981, #047857);
+  background: linear-gradient(135deg, #059669, #059669);
   border-radius: 100%;
   border:linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   width: 50px;
@@ -521,7 +521,7 @@ textarea {
   margin-left: 8px;
 }
 .rem_btn {
-  background-color: red;
+  background-color: black;
   color: white;
   cursor: pointer;
   border: 0;
@@ -544,8 +544,10 @@ textarea {
 .page-header {
   text-align: center;
   padding: 6rem 1rem 2rem;
-  background-color: #000000;
-  border-bottom: 1px solid #ddd;
+  background-color: #1e293b;
+  border-bottom: 1px solid #1e293b;
+  color: #059669;
+  font-size: 1.5rem;
   
 }
 
@@ -557,5 +559,5 @@ textarea {
 
 .main-subtitle {
   font-size: 1.25rem;
-  color: #666;
+  color: #ffffff;
 }
