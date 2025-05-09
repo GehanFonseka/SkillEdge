@@ -345,29 +345,53 @@ function MyAllPost() {
       <NavBar />
       <Box sx={{ 
         display: 'flex', 
-        bgcolor: '#ffffff', 
+        bgcolor: '#1e293b', 
         minHeight: 'calc(100vh - 64px)' 
       }}>
-        <Box sx={{ width: '400px', flexShrink: 0 }}>
-          <StyledSearchBar elevation={0}>
-            <Typography variant="h6" sx={{ mb: 2 }}>Search Posts</Typography>
-            <TextField
-              fullWidth
-              placeholder="Search by title, description, or category"
-              value={searchQuery}
-              onChange={handleSearch}
-              variant="outlined"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon sx={{ color: 'text.secondary' }} />
-                  </InputAdornment>
-                )
-              }}
-              sx={{ mb: 2 }}
-            />
-          </StyledSearchBar>
-        </Box>
+        {/* Left side - Search */}
+
+<Box sx={{ width: '400px', flexShrink: 0, mt: -5 }}>
+  <StyledSearchBar elevation={0} sx={{ bgcolor: '#0F172A', color: '#ffffff' }}> 
+    <Typography variant="h6" sx={{ mb: 2, color: '#10b981' }}> 
+      Search Posts
+    </Typography>
+    <TextField
+      fullWidth
+      placeholder="Search by title, description, or category"
+      value={searchQuery}
+      onChange={handleSearch}
+      variant="outlined"
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon sx={{ color: '#10b981' }} /> 
+          </InputAdornment>
+        ),
+        style: { color: '#ffffff' } 
+      }}
+      sx={{
+        mb: 2,
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: '#10b981', // Updated border color
+          },
+          '&:hover fieldset': {
+            borderColor: '#047857', // Updated hover border color
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#10b981', // Updated focus border color
+          },
+        },
+        '& .MuiInputBase-input': {
+          color: '#ffffff', // Updated input text color
+        },
+        '& .MuiInputLabel-root': {
+          color: '#ffffff', // Updated placeholder text color
+        },
+      }}
+    />
+  </StyledSearchBar>
+</Box>
 
         <PostsContainer>
           {filteredPosts.length === 0 ? (
@@ -379,15 +403,29 @@ function MyAllPost() {
             </Paper>
           ) : (
             filteredPosts.map((post) => (
-              <PostCard key={post.id}>
+              <PostCard key={post.id}
+              sx={{
+                backgroundColor: '#0F172A', // Updated background color to dark blue
+                color: '#FFFFFF', // Updated text color to white
+                marginBottom: '20px',
+                borderRadius: '15px',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)', // Subtle shadow
+                transition: 'transform 0.2s ease-in-out',
+                '&:hover': {
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.15)', // Slightly stronger shadow on hover
+                },
+              }}
+              >
                 <CardContent>
                   <Box sx={{ 
                     display: 'flex', 
                     justifyContent: 'space-between', 
                     alignItems: 'center',
-                    mb: 2 
+                    mb: 2 ,
+                  
                   }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1,}}>
                       <Avatar sx={{ bgcolor: '#047857' }}>
                         {(postOwners[post.userID] || 'A')[0]}
                       </Avatar>
@@ -396,6 +434,8 @@ function MyAllPost() {
                       </Typography>
                     </Box>
                     {post.userID === loggedInUserID && (
+
+                  
                       <Box sx={{ display: 'flex', gap: 1 }}>
                         <div className='action_btn_icon_post'>
                           <FaEdit

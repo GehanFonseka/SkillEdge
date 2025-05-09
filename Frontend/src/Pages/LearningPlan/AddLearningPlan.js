@@ -99,9 +99,9 @@ function AddLearningPlan() {
         postOwnerName,
         imageUrl,
         templateID,
-        startDate, // New field
-        endDate,   // New field
-        category   // New field
+        startDate, 
+        endDate,   
+        category   
       };
 
       // Submit the post data
@@ -135,7 +135,13 @@ function AddLearningPlan() {
 
   return (
     <div className="create-post-page">
+      <div className="page-header">
+        <h1>Create Learning Plan</h1>
+        <p style={{ fontSize: '20px' }}>Share your learning journey with others</p>
+      </div>
+  
       <NavBar />
+  
       <div className="create-post-main templates-layout">
         <div className="templates-sidebar">
           <h2 className="template-gallery-title">Choose a Template</h2>
@@ -153,7 +159,7 @@ function AddLearningPlan() {
                 <h3 className="preview-title">{title || "Title Preview"}</h3>
                 <div className="preview-meta">
                   <span className="preview-dates">
-                    <HiCalendarDateRange /> 
+                    <HiCalendarDateRange />
                     <span>{startDate || "Start"} to {endDate || "End"}</span>
                   </span>
                   <span className="preview-category">{category || "Category"}</span>
@@ -183,7 +189,7 @@ function AddLearningPlan() {
                 </div>
               </div>
             </div>
-
+  
             {/* Template 2 */}
             <div 
               className={`template-item ${templateID === '2' ? 'template-selected' : ''}`}
@@ -227,7 +233,7 @@ function AddLearningPlan() {
                 </div>
               </div>
             </div>
-
+  
             {/* Template 3 */}
             <div 
               className={`template-item ${templateID === '3' ? 'template-selected' : ''}`}
@@ -269,19 +275,16 @@ function AddLearningPlan() {
             </div>
           </div>
         </div>
-
+  
+        {/* Right Section: Form */}
         <div className="create-post-container">
-          <div className="create-post-header">
-            <div className="header-content">
-              <h1>Create Learning Plan</h1>
-              <p>Share your learning journey with others</p>
-            </div>
-            <div className="header-decoration"></div>
-          </div>
-
+          
+  
           <form onSubmit={handleSubmit} className="create-post-form">
+            {/* Form Inputs */}
             <div className="form-floating-group">
               <div className="floating-input">
+              <label htmlFor="title">Plan Title</label>
                 <input
                   type="text"
                   id="title"
@@ -290,10 +293,11 @@ function AddLearningPlan() {
                   required
                   placeholder=" "
                 />
-                <label htmlFor="title">Plan Title</label>
+                
               </div>
-
+  
               <div className="floating-input">
+              <label htmlFor="description">Plan Description</label>
                 <textarea
                   id="description"
                   value={description}
@@ -302,10 +306,11 @@ function AddLearningPlan() {
                   placeholder=" "
                   rows={6}
                 />
-                <label htmlFor="description">Plan Description</label>
+                
               </div>
-
+  
               <div className="floating-input">
+              <label htmlFor="category">Select Category</label>
                 <select
                   id="category"
                   value={category}
@@ -318,10 +323,11 @@ function AddLearningPlan() {
                   <option value="Cooking">Cooking</option>
                   <option value="Photography">Photography</option>
                 </select>
-                <label htmlFor="category">Select Category</label>
+                
               </div>
-
+  
               <div className="floating-input">
+              <label htmlFor="template">Select Template</label>
                 <select
                   id="template"
                   value={templateID}
@@ -333,11 +339,12 @@ function AddLearningPlan() {
                   <option value="2">Template 2</option>
                   <option value="3">Template 3</option>
                 </select>
-                <label htmlFor="template">Select Template</label>
+                
               </div>
-
+  
               <div className="date-inputs">
                 <div className="floating-input">
+                <label htmlFor="startDate">Start Date</label>
                   <input
                     type="date"
                     id="startDate"
@@ -345,10 +352,11 @@ function AddLearningPlan() {
                     onChange={(e) => setStartDate(e.target.value)}
                     required
                   />
-                  <label htmlFor="startDate">Start Date</label>
+                  
                 </div>
-
+  
                 <div className="floating-input">
+                <label htmlFor="endDate">End Date</label>
                   <input
                     type="date"
                     id="endDate"
@@ -356,56 +364,62 @@ function AddLearningPlan() {
                     onChange={(e) => setEndDate(e.target.value)}
                     required
                   />
-                  <label htmlFor="endDate">End Date</label>
+                  
                 </div>
               </div>
             </div>
+  
+            {/* Tag Section */}
+<div className="tags-section material-card"style={{ backgroundColor: '#1e293b', border: '2px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px' }}>
+  <div className="tags-header">
+  <h3 style={{ color: 'white' }}>Add Tags</h3>
+    <span style={{ color: 'white' }}className="tags-subtitle">Help others find your learning plan</span>
+  </div>
+  <div className="tags-container">
+    {tags.map((tag, index) => (
+      <span key={index} className="material-tag">
+        #{tag}
+        <button 
+          type="button" 
+          onClick={() => setTags(tags.filter((_, i) => i !== index))}
+          className="material-remove-tag"
+          aria-label="Remove tag"
+        >
+        
+        </button>
+      </span>
+    ))}
+  </div>
+  <div className="material-tag-input">
+  <input
+  type="text"
+  value={tagInput}
+  onChange={(e) => setTagInput(e.target.value)}
+  onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
+  placeholder="Type a tag and press Enter"
+  className="material-input"
+  style={{ backgroundColor: '#1e293b', color: 'white', border: '2px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px' }}
+/>
+    <button type="button" onClick={handleAddTag} className="material-add-btn">
+      <IoMdAdd className="material-icon" />
+    </button>
+  </div>
+</div>
 
-            <div className="tags-section material-card">
-              <div className="tags-header">
-                <h3>Add Tags</h3>
-                <span className="tags-subtitle">Help others find your learning plan</span>
-              </div>
-              <div className="tags-container">
-                {tags.map((tag, index) => (
-                  <span key={index} className="material-tag">
-                    #{tag}
-                    <button 
-                      type="button" 
-                      onClick={() => setTags(tags.filter((_, i) => i !== index))}
-                      className="material-remove-tag"
-                      aria-label="Remove tag"
-                    >
-                      <span className="material-icon">×</span>
-                    </button>
-                  </span>
-                ))}
-              </div>
-              <div className="material-tag-input">
-                <input
-                  type="text"
-                  value={tagInput}
-                  onChange={(e) => setTagInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
-                  placeholder="Type a tag and press Enter"
-                  className="material-input"
-                />
-                <button type="button" onClick={handleAddTag} className="material-add-btn">
-                  <IoMdAdd className="material-icon" />
-                </button>
-              </div>
-            </div>
-
+  
+            {/* Media Section */}
             <div className="media-section material-card">
               <div className="media-header">
-                <h3>Add Media</h3>
-                <span className="media-subtitle">Enhance your learning plan with media</span>
+              
+                <h3 style={{ color: 'white' }}>Add Media</h3>
+                <span style={{ color: 'white' }}className="media-subtitle">Enhance your learning plan with media</span>
               </div>
               <div className="material-media-buttons">
                 <button 
                   type="button" 
                   className={`material-media-btn ${showContentURLInput ? 'active' : ''}`}
                   onClick={() => setShowContentURLInput(!showContentURLInput)}
+                  style={{ backgroundColor: '#1e293b', color: 'white', border: '2px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px' }}
                 >
                   <FaVideo className="material-icon" />
                   <span>Add Video URL</span>
@@ -414,12 +428,13 @@ function AddLearningPlan() {
                   type="button" 
                   className={`material-media-btn ${showImageUploadInput ? 'active' : ''}`}
                   onClick={() => setShowImageUploadInput(!showImageUploadInput)}
+                  style={{ backgroundColor: '#1e293b', color: 'white', border: '2px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px' }}
                 >
                   <FaImage className="material-icon" />
                   <span>Add Image</span>
                 </button>
               </div>
-
+  
               {showContentURLInput && (
                 <div className="material-url-input">
                   <input
@@ -442,7 +457,7 @@ function AddLearningPlan() {
                   )}
                 </div>
               )}
-
+  
               {showImageUploadInput && (
                 <div className="material-upload-section">
                   <input
@@ -483,7 +498,7 @@ function AddLearningPlan() {
                 </div>
               )}
             </div>
-
+  
             <button type="submit" className="publish-button" disabled={isSubmitting}>
               {isSubmitting ? 'Publishing...' : 'Publish Learning Plan'}
             </button>
@@ -492,6 +507,7 @@ function AddLearningPlan() {
       </div>
     </div>
   );
+  
 }
 
 export default AddLearningPlan;

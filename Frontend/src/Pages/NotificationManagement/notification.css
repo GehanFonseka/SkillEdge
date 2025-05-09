@@ -6,7 +6,7 @@
   --surface: rgba(16, 16, 32, 0.95);
   --text-primary: #ffffff;
   --text-secondary: #94a3b8;
-  --danger: #ef4444; /* Changed from #ff3860 to a softer red */
+  --danger: #ff3860;
   --success: #00ffa3;
   --border: rgba(255, 255, 255, 0.1);
   --shadow-sm: 0 0 10px rgba(0, 212, 255, 0.1);
@@ -61,13 +61,16 @@
 }
 
 .post_card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+.post_card:hover::before {
+  opacity: 0.1;
   transform: none;
   box-shadow: var(--shadow-sm);
 }
 
-.post_card:hover::before {
-  opacity: 0;
-}
 
 .unread {
   border-left: 4px solid var(--primary);
@@ -198,6 +201,9 @@
   }
 }
 
+.post_card {
+  animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
 @media (max-width: 768px) {
   .continSection {
     padding: 1.5rem;
@@ -218,5 +224,13 @@
     border-top: 1px solid var(--border);
     padding-top: 1.5rem;
     margin-top: 1rem;
+    gap: 1.5rem;
+  }
+
+  .action_btn_icon {
+    font-size: 1.75rem;
+    padding: 0.875rem;
+    min-width: 56px;
+    min-height: 56px;
   }
 }

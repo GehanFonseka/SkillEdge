@@ -106,7 +106,19 @@ function UpdateLearningPost() {
       }
     }
 
-    const updatedPost = { title, description, contentURL, tags, imageUrl, postOwnerID: localStorage.getItem('userID'), templateID, startDate, endDate, category };
+    const updatedPost = {
+      title,
+      description,
+      contentURL,
+      tags,
+      imageUrl,
+      postOwnerID: localStorage.getItem('userID'),
+      templateID,
+      startDate,
+      endDate,
+      category
+    };
+
     try {
       await axios.put(`http://localhost:8080/learningPlan/${id}`, updatedPost);
       alert('Post updated successfully!');
@@ -120,11 +132,19 @@ function UpdateLearningPost() {
   return (
     <div className="create-post-page">
       <NavBar />
+
+      {/* === Top Title Section === */}
+      <div className="page-header">
+        <h1 className="main-title">Update Learning Plan</h1>
+        <p className="main-subtitle">Modify your learning journey</p>
+      </div>
+
       <div className="create-post-main templates-layout">
+        {/* Template Sidebar */}
         <div className="templates-sidebar">
           <h2 className="template-gallery-title">Choose a Template</h2>
           <div className="templates-list">
-            <div 
+            <div
               className={`template-item ${templateID === 1 ? 'template-selected' : ''}`}
               onClick={() => setTemplateID(1)}
             >
@@ -136,7 +156,7 @@ function UpdateLearningPost() {
                 <h3 className="preview-title">{title || "Title Preview"}</h3>
                 <div className="preview-meta">
                   <span className="preview-dates">
-                    <HiCalendarDateRange /> 
+                    <HiCalendarDateRange />
                     <span>{startDate || "Start"} to {endDate || "End"}</span>
                   </span>
                   <span className="preview-category">{category || "Category"}</span>
@@ -152,18 +172,12 @@ function UpdateLearningPost() {
           </div>
         </div>
 
+        {/* Form Section */}
         <div className="create-post-container">
-          <div className="create-post-header">
-            <div className="header-content">
-              <h1>Update Learning Plan</h1>
-              <p>Modify your learning journey</p>
-            </div>
-            <div className="header-decoration"></div>
-          </div>
-
           <form onSubmit={handleSubmit} className="create-post-form">
             <div className="form-floating-group">
               <div className="floating-input">
+              <label htmlFor="title">Plan Title</label>
                 <input
                   type="text"
                   id="title"
@@ -172,10 +186,11 @@ function UpdateLearningPost() {
                   required
                   placeholder=" "
                 />
-                <label htmlFor="title">Plan Title</label>
+                
               </div>
 
               <div className="floating-input">
+              <label htmlFor="description">Plan Description</label>
                 <textarea
                   id="description"
                   value={description}
@@ -184,10 +199,11 @@ function UpdateLearningPost() {
                   placeholder=" "
                   rows={6}
                 />
-                <label htmlFor="description">Plan Description</label>
+                
               </div>
 
               <div className="floating-input">
+              <label htmlFor="category">Select Category</label>
                 <select
                   id="category"
                   value={category}
@@ -200,11 +216,12 @@ function UpdateLearningPost() {
                   <option value="Cooking">Cooking</option>
                   <option value="Photography">Photography</option>
                 </select>
-                <label htmlFor="category">Select Category</label>
+                
               </div>
 
               <div className="date-inputs">
                 <div className="floating-input">
+                <label htmlFor="startDate">Start Date</label>
                   <input
                     type="date"
                     id="startDate"
@@ -212,10 +229,11 @@ function UpdateLearningPost() {
                     onChange={(e) => setStartDate(e.target.value)}
                     required
                   />
-                  <label htmlFor="startDate">Start Date</label>
+                  
                 </div>
 
                 <div className="floating-input">
+                <label htmlFor="endDate">End Date</label>
                   <input
                     type="date"
                     id="endDate"
@@ -223,11 +241,12 @@ function UpdateLearningPost() {
                     onChange={(e) => setEndDate(e.target.value)}
                     required
                   />
-                  <label htmlFor="endDate">End Date</label>
+                  
                 </div>
               </div>
             </div>
 
+            {/* Tags Section */}
             <div className="tags-section material-card">
               <div className="tags-header">
                 <h3>Update Tags</h3>
@@ -237,8 +256,8 @@ function UpdateLearningPost() {
                 {tags.map((tag, index) => (
                   <span key={index} className="material-tag">
                     #{tag}
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       onClick={() => handleDeleteTag(index)}
                       className="material-remove-tag"
                     >
@@ -262,22 +281,23 @@ function UpdateLearningPost() {
               </div>
             </div>
 
+            {/* Media Section */}
             <div className="media-section material-card">
               <div className="media-header">
                 <h3>Update Media</h3>
                 <span className="media-subtitle">Enhance your learning plan with media</span>
               </div>
               <div className="material-media-buttons">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className={`material-media-btn ${showContentURLInput ? 'active' : ''}`}
                   onClick={() => setShowContentURLInput(!showContentURLInput)}
                 >
                   <FaVideo className="material-icon" />
                   <span>Update Video URL</span>
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className={`material-media-btn ${showImageUploadInput ? 'active' : ''}`}
                   onClick={() => setShowImageUploadInput(!showImageUploadInput)}
                 >
@@ -312,8 +332,8 @@ function UpdateLearningPost() {
                       {imagePreview ? (
                         <div className="material-preview-container">
                           <img src={imagePreview} alt="Preview" className="material-image-preview" />
-                          <button 
-                            type="button" 
+                          <button
+                            type="button"
                             onClick={() => {
                               setImage(null);
                               setImagePreview(null);

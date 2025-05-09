@@ -22,6 +22,7 @@ import MyLearningPlan from "./Pages/LearningPlan/MyLearningPlan";
 import AddProgressUpdate from "./Pages/LearningPlan/AddProgressUpdate";
 import UpdateProgressUpdate from "./Pages/LearningPlan/UpdateProgressUpdate";
 
+
 function ProtectedRoute({ children }) {
   const userID = localStorage.getItem("userID");
   if (!userID) {

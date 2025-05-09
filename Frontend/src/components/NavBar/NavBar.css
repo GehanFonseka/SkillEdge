@@ -1,6 +1,7 @@
 /* Modern Variables */
 :root {
   /* Professional Color Palette */
+
   --primary: #2563eb;    /* Royal Blue */
   --secondary: #3b82f6;  /* Bright Blue */
   --accent: #60a5fa;     /* Light Blue */
@@ -8,6 +9,7 @@
   --surface: #ffffff;    /* White */
   --text-primary: #1e293b; /* Slate 800 */
   --text-secondary: #64748b; /* Slate 500 */
+
   
   /* Navbar Specific */
   --nav-bg: rgba(255, 255, 255, 0.95);
@@ -32,6 +34,7 @@
   border-bottom: 1px solid var(--nav-border);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 /* Nav Content Container */
@@ -75,6 +78,7 @@
   opacity: 0.2;
 }
 
+
 /* Nav Items Container */
 .nav_item_set {
   display: flex;
@@ -100,6 +104,7 @@
   position: relative;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
+
 }
 
 /* Hover Effect */
@@ -149,6 +154,7 @@
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.3s ease;
+
 }
 
 .nav_item_icon:hover {
@@ -156,6 +162,7 @@
   transform: translateY(-2px);
   text-shadow: 0 0 15px var(--nav-glow);
 }
+
 
 /* Notification Icon */
 .nav_item_icon_noty {
@@ -177,6 +184,7 @@
   border-radius: 50%;
   box-shadow: 0 0 10px var(--nav-glow);
 }
+
 
 /* Notification Icon Styles */
 .notification-icon-wrapper {
@@ -260,6 +268,18 @@
   .nav_nav_item {
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Responsive Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nav-bg: rgba(15, 23, 42, 0.95);
+    --nav-border: rgba(51, 65, 85, 0.8);
+    --nav-text: #f8fafc;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+
   }
 }
 
