@@ -17,12 +17,13 @@
 
 .continer {
   min-height: 100vh;
+  min-width: 100vw;
   background: linear-gradient(135deg, var(--background) 0%, #141432 100%);
   padding-top: 90px;
 }
 
 .continSection {
-  max-width: 1000px;
+  max-width: 100px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -46,6 +47,7 @@
   position: relative;
   backdrop-filter: blur(10px);
   min-height: 100px;
+  animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .post_card::before {
@@ -65,7 +67,10 @@
 
 .post_card:hover::before {
   opacity: 0.1;
+  transform: none;
+  box-shadow: var(--shadow-sm);
 }
+
 
 .unread {
   border-left: 4px solid var(--primary);
@@ -101,68 +106,62 @@
 
 .noty_action_btn_con {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
-  padding: 0.5rem;
+  margin-left: auto;
 }
 
-.action_btn_icon {
-  font-size: 2rem;
-  padding: 1rem;
-  border-radius: 16px;
+.notification_action_btn {
+  background: transparent;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.03);
-  position: relative;
-  z-index: 1;
-  min-width: 64px;
-  min-height: 64px;
+  padding: 1rem;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 70px;
+  min-height: 70px;
+  position: relative;
+  z-index: 1;
 }
 
-.action_btn_icon::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 2px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.action_btn_icon:first-child {
+.notification_action_btn.mark_read_btn {
   color: var(--success);
 }
 
-.action_btn_icon:first-child:hover {
-  background: rgba(0, 255, 163, 0.15);
-  box-shadow: 0 0 25px rgba(0, 255, 163, 0.4);
-  transform: scale(1.15);
-}
-
-.action_btn_icon:last-child {
+.notification_action_btn.delete_btn {
   color: var(--danger);
 }
 
-.action_btn_icon:last-child:hover {
-  background: rgba(255, 56, 96, 0.15);
-  box-shadow: 0 0 25px rgba(255, 56, 96, 0.4);
-  transform: scale(1.15);
+.btn_icon {
+  pointer-events: none;
 }
 
-.action_btn_icon:hover {
-  transform: scale(1.15);
+.delete_btn {
+  color: var(--danger);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.action_btn_icon:hover::before {
-  opacity: 1;
+/* Add hover effect for delete button */
+.delete_btn:hover {
+  transform: scale(1.1);
+  background: rgba(239, 68, 68, 0.1);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+/* Remove hover effect border */
+.notification_action_btn::before {
+  display: none;
+}
+
+/* Remove only the transform from hover states */
+.notification_action_btn:hover,
+.mark_read_btn:hover,
+.delete_btn:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .not_found_box {
@@ -205,7 +204,6 @@
 .post_card {
   animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-
 @media (max-width: 768px) {
   .continSection {
     padding: 1.5rem;

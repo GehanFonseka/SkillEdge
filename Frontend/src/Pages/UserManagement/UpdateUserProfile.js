@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { IoMdAdd } from "react-icons/io";
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import '../PostManagement/AddNewPost.css';
 
 function UpdateUserProfile() {

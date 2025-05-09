@@ -736,6 +736,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .create-post-page {
   min-height: 100vh;
   background-color: #1e293b; /* Dark slate blue */
+  background: linear-gradient(45deg, #000428, #004e92);
   color: var(--text-primary);
   position: relative;
   overflow: hidden;
@@ -748,6 +749,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   left: 0;
   width: 100%;
   height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%),
+              url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   
   z-index: 0;
   animation: backgroundFloat 20s linear infinite;
@@ -775,7 +778,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color:rgba(15, 23, 42, 0.95);
 }
 
-
+/* Header Content Styling */
 .create-post-header {
   text-align: center;
   margin: -2rem auto 4rem;
@@ -798,8 +801,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
   letter-spacing: -0.5px;
-  
-  
 }
 
 .main-subtitle {
@@ -830,8 +831,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 1.1rem;
   color: var(--text-primary);
   display: flex;
-  align-items: center; /* Align icon and text vertically */
-  gap: 0.5rem; /* Space between icon and text */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   transition: transform 0.3s ease;
 }
 
@@ -970,7 +972,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .floating-input select option:disabled {
   color: rgba(255, 255, 255, 0.5);
 }
-
 /* Style for selected option */
 .floating-input select option:checked {
   background: linear-gradient(120deg, var(--neon-primary), var(--neon-secondary));
@@ -1036,11 +1037,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border: none;
   border-radius: 12px;
   color: #ffffff; /* White text for contrast */
+
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
 }
 
 .publish-button:hover {
@@ -1280,4 +1283,52 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .page-header p {
   font-size: 14px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.preview-item:hover .remove-preview {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.remove-preview:hover {
+  background: rgba(255, 0, 0, 1);
+  transform: scale(1.1);
+}
+
+/* Upload Information */
+.upload-info {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.upload-info span {
+  color: var(--neon-primary);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .media-section {
+    padding: 1.5rem;
+  }
+
+  .preview-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .upload-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
 }

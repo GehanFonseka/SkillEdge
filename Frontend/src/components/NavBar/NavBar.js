@@ -3,6 +3,7 @@ import { FaUserGraduate } from "react-icons/fa";
 import { MdNotifications } from "react-icons/md";
 import { MdNotificationsActive } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
+import { IoNotifications } from 'react-icons/io5';
 import axios from 'axios';
 import './NavBar.css';
 import Pro from './img/img.png';
@@ -15,21 +16,27 @@ function NavBar() {
     const [userProfileImage, setUserProfileImage] = useState(null);
     const [isVisible, setIsVisible] = useState(true);
     const [hoveredItem, setHoveredItem] = useState(null);
+    const [unreadCount, setUnreadCount] = useState(0);
     const userId = localStorage.getItem('userID');
     let lastScrollY = window.scrollY;
 
     useEffect(() => {
-        const fetchNotifications = async () => {
+        const fetchUnreadCount = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/notifications/${userId}`);
-                const unreadNotifications = response.data.some(notification => !notification.read);
-                setAllRead(!unreadNotifications);
+                const unreadNotifications = response.data.filter(notification => !notification.read);
+                setUnreadCount(unreadNotifications.length);
+                setAllRead(unreadNotifications.length === 0);
             } catch (error) {
                 console.error('Error fetching notifications:', error);
             }
         };
+
         if (userId) {
-            fetchNotifications();
+            fetchUnreadCount();
+            // Poll for new notifications every minute
+            const interval = setInterval(fetchUnreadCount, 60000);
+            return () => clearInterval(interval);
         }
     }, [userId]);
 
@@ -112,19 +119,18 @@ function NavBar() {
                         >
                             Achievements
                         </p>
-                        {allRead ? (
-                            <MdNotifications
+                        <div className="notification-icon-wrapper">
+                            <IoNotifications
                                 className={`nav_item_icon ${currentPath === '/notifications' ? 'nav_item_icon_noty' : ''}`}
                                 onClick={() => (window.location.href = '/notifications')}
                                 style={iconStyle(currentPath === '/notifications', hoveredItem === 'notifications')}
                                 onMouseEnter={() => setHoveredItem('notifications')}
-                                onMouseLeave={() => setHoveredItem(null)} />
-                        ) : (
-                            <MdNotificationsActive 
-                                className='nav_item_icon_noty' 
-                                onClick={() => (window.location.href = '/notifications')}
-                                style={{color: '#047857'}}  />
-                        )}
+                                onMouseLeave={() => setHoveredItem(null)}
+                            />
+                            {unreadCount > 0 && (
+                                <span className="notification-badge">{unreadCount}</span>
+                            )}
+                        </div>
                         <IoLogOut
                             className='nav_item_icon'
                             onClick={() => {

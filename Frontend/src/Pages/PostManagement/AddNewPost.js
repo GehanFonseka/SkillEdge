@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import './AddNewPost.css';
 
 function AddNewPost() {
@@ -93,6 +93,7 @@ function AddNewPost() {
           <div className="create-post-header">
             <div className="header-content">
               <h1>Create Your Story</h1>
+
               <p className="main-subtitle"></p>
               <div className="header-description">
                 <p className="feature-text">✨ Express yourself through words </p>

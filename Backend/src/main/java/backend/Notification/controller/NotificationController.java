@@ -20,6 +20,15 @@ public class NotificationController {
         return notificationRepository.findByUserId(userId);
     }
 
+    @GetMapping("/unread-count/{userId}")
+    public ResponseEntity<Long> getUnreadCount(@PathVariable String userId) {
+        List<NotificationModel> notifications = notificationRepository.findByUserId(userId);
+        long unreadCount = notifications.stream()
+                .filter(notification -> !notification.isRead())
+                .count();
+        return ResponseEntity.ok(unreadCount);
+    }
+
     @PutMapping("/{id}/markAsRead")
     public ResponseEntity<?> markAsRead(@PathVariable String id) {
         return notificationRepository.findById(id).map(notification -> {

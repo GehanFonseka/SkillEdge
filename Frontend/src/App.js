@@ -19,7 +19,8 @@ import MyAchievements from "./Pages/AchievementsManagement/MyAchievements";
 import MyAllPost from "./Pages/PostManagement/MyAllPost";
 import GoogalUserPro from "./Pages/UserManagement/GoogalUserPro";
 import MyLearningPlan from "./Pages/LearningPlan/MyLearningPlan";
-
+import AddProgressUpdate from "./Pages/LearningPlan/AddProgressUpdate";
+import UpdateProgressUpdate from "./Pages/LearningPlan/UpdateProgressUpdate";
 
 
 function ProtectedRoute({ children }) {
@@ -187,6 +188,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <UpdatePost />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/learning-plan/:planId/add-progress"
+            element={
+              <ProtectedRoute>
+                <AddProgressUpdate />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/learning-plan/:planId/update-progress/:progressId"
+            element={
+              <ProtectedRoute>
+                <UpdateProgressUpdate />
               </ProtectedRoute>
             }
           />

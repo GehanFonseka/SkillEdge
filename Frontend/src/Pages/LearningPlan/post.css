@@ -560,4 +560,236 @@ textarea {
 .main-subtitle {
   font-size: 1.25rem;
   color: #ffffff;
+
+/* Import professional fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+/* Button Container Styles */
+.button-container {
+  display: flex;
+  gap: 16px;
+  margin: 24px 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Modern Action Buttons */
+.add-progress-btn,
+.show-progress-btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+  justify-content: center;
+}
+
+/* Add Progress Button */
+.add-progress-btn {
+  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 2px 4px rgba(4, 120, 87, 0.2);
+}
+
+.add-progress-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(4, 120, 87, 0.25);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.add-progress-btn svg {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.add-progress-btn:hover svg {
+  transform: rotate(90deg);
+}
+
+/* Show Progress Button */
+.show-progress-btn {
+  background: #f8fafc;
+  color: #047857;
+  border: 2px solid #e2e8f0;
+}
+
+.show-progress-btn:hover {
+  background: #f0fdf4;
+  border-color: #047857;
+  transform: translateY(-2px);
+}
+
+.show-progress-btn.active {
+  background: #047857;
+  color: white;
+  border-color: #047857;
+}
+
+.show-progress-btn svg {
+  font-size: 1.2rem;
+}
+
+/* Progress Section Styles */
+.progress-section {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.progress-updates {
+  margin-top: 20px;
+}
+
+.progress-updates h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+/* Progress Update Card */
+.progress-update-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.update-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.update-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.progress-action-btn {
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-action-btn:hover {
+  background: #f1f5f9;
+}
+
+.progress-action-btn.delete:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.progress-icon {
+  font-size: 1.2rem;
+  color: #475569;
+}
+
+.progress-action-btn:hover .progress-icon {
+  color: #047857;
+}
+
+.progress-action-btn.delete:hover .progress-icon {
+  color: #ef4444;
+}
+
+.update-type {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #047857;
+  background: #ecfdf5;
+  padding: 4px 12px;
+  border-radius: 16px;
+}
+
+.update-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.update-content {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+/* Progress Bar */
+.completion-bar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.completion-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #047857 0%, #10b981 100%);
+  transition: width 0.3s ease-in-out;
+}
+
+.completion-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #64748b;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Skills and Resources */
+.skills-learned,
+.resources-used {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #475569;
+  margin-top: 8px;
+}
+
+.skills-learned strong,
+.resources-used strong {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .button-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .add-progress-btn,
+  .show-progress-btn {
+    width: 100%;
+  }
 }

@@ -72,7 +72,6 @@ public class AchievementsController {
     public void delete(@PathVariable String id) {
         achievementsRepository.deleteById(id);
     }
-
     @GetMapping("/achievements/images/{filename:.+}")
     public ResponseEntity<Resource> getImage(@PathVariable String filename) {
         try {
