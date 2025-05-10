@@ -92,7 +92,7 @@ function UpdateProgressUpdate() {
               ))}
             </select>
           </div>
-
+<div></div>
           <div className="form-group">
             <label>Description</label>
             <textarea
