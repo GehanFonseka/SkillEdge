@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './post.css';
+import './ProgressUpdate.css';
 import { FaEdit, FaPlus } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { IoIosCreate } from "react-icons/io";

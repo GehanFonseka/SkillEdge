@@ -610,16 +610,14 @@ function AllPost() {
       <NavBar />
       <Box sx={{ 
         display: 'flex', 
-        bgcolor: '#1e293b', 
-        minHeight: 'calc(100vh - 64px)' 
+        bgcolor: '#ffffff', // Changed from '#f5f5f5' to white
+        minHeight: 'calc(100vh - 64px)' // Adjust based on navbar height
       }}>
-
 {/* Left side - Search */}
 
 <Box sx={{ width: '400px', flexShrink: 0, mt: -9}}>
   <StyledSearchBar elevation={0} sx={{ bgcolor: '#0F172A', color: '#ffffff' }}> {/* Updated background and text color */}
     <Typography variant="h6" sx={{ mb: 2, color: '#10b981' }}> {/* Updated text color */}
-
       Search Posts
     </Typography>
     <TextField
@@ -631,7 +629,6 @@ function AllPost() {
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
-
             <SearchIcon sx={{ color: '#10b981' }} /> {/* Updated icon color */}
           </InputAdornment>
         ),
@@ -641,9 +638,7 @@ function AllPost() {
         mb: 2,
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-
             borderColor: '#10b981', // Updated border color
-
           },
           '&:hover fieldset': {
             borderColor: '#047857', // Updated hover border color
@@ -674,21 +669,7 @@ function AllPost() {
             </Paper>
           ) : (
             filteredPosts.map((post) => (
-              <PostCard key={post.id}
-              sx={{
-                backgroundColor: '#0F172A', // Updated background color to dark blue
-                color: '#FFFFFF', // Updated text color to white
-                marginBottom: '20px',
-                borderRadius: '15px',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)', // Subtle shadow
-                transition: 'transform 0.2s ease-in-out',
-                '&:hover': {
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.15)', // Slightly stronger shadow on hover
-                },
-              }}
-              >
-                
+              <PostCard key={post.id}>
                 <CardContent>
                   {/* User Header */}
                   <Box sx={{ 
@@ -718,11 +699,9 @@ function AllPost() {
                         onClick={() => handleFollowToggle(post.userID)}
                         style={{
                           borderRadius: '20px',
-                          padding: '4px 10px',
+                          padding: '6px 16px',
                           border: 'none',
-                          cursor: 'pointer',
-                          backgroundColor: followedUsers.includes(post.userID) ? '#EF4444' : '#10B981', // Red for Unfollow, Green for Follow
-                          color: '#FFFFFF', // White text
+                          cursor: 'pointer'
                         }}
                       >
                         {followedUsers.includes(post.userID) ? 'Unfollow' : 'Follow'}
@@ -732,28 +711,10 @@ function AllPost() {
                         {/* Existing action buttons */}
                         <div className='action_btn_icon_post'>
                           <FaEdit
-                            onClick={() => handleUpdate(post.id)} className='action_btn_icon' 
-                            style={{
-                              color: '#E6F4EA', 
-                              fontSize: '18px', 
-                              cursor: 'pointer',
-                              padding: '5px', 
-                              borderRadius: '4px', 
-                              backgroundColor: '#0F172A', 
-                            }}
-                            />
+                            onClick={() => handleUpdate(post.id)} className='action_btn_icon' />
                           <RiDeleteBin6Fill
                             onClick={() => handleDelete(post.id)}
-                            className='action_btn_icon'
-                            style={{
-                              color: '#EF4444', // Red for delete button
-                              fontSize: '30px', // Adjusted size
-                              cursor: 'pointer',
-                              padding: '5px', // Added padding for better spacing
-                              borderRadius: '4px', // Rounded corners
-                              backgroundColor: '0F172A', // Light red background
-                            }}
-                            />
+                            className='action_btn_icon' />
                         </div>
                       </Box>
                     )}
@@ -768,13 +729,13 @@ function AllPost() {
                       variant="body1" 
                       sx={{ 
                         whiteSpace: "pre-line",
-                        color: '#FFFFFF',
+                        color: 'text.secondary',
                         mb: 1
                       }}
                     >
                       {post.description}
                     </Typography>
-                    <Typography variant="caption" color="#FFFFFF">
+                    <Typography variant="caption" color="text.secondary">
                       Category: {post.category || 'Uncategorized'}
                     </Typography>
                   </Box>
@@ -810,11 +771,6 @@ function AllPost() {
                       <BiSolidLike
                         className={post.likes?.[localStorage.getItem('userID')] ? 'unlikebtn' : 'likebtn'}
                         onClick={() => handleLike(post.id)}
-                        style={{
-                          color: post.likes?.[localStorage.getItem('userID')] ? '#0000FF ' : '#FFFFFF', // Red for unlike, green for like
-                          fontSize: '28px', // Adjusted size
-                          cursor: 'pointer',
-                        }}
                       >
                         {post.likes?.[localStorage.getItem('userID')] ? 'Unlike' : 'Like'}
                       </BiSolidLike>
@@ -826,9 +782,7 @@ function AllPost() {
                       <div className='like_btn_con'>
                         <FaCommentAlt
                           className='combtn'
-
                           onClick={() => toggleComments(post.id)}
-
                         />
                         <p className='like_num'>
                           {post.comments?.length || 0}
@@ -836,7 +790,6 @@ function AllPost() {
                       </div>
                     </div>
                   </div>
-
 
                   {/* Comments section - Only show when active */}
                   {activeComments === post.id && (
