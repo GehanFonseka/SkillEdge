@@ -6,8 +6,7 @@ if [ ! -d .git ]; then
   exit 1
 fi
 
-START_DATE="2025-03-16"
-END_DATE="2025-04-12"
+COMMIT_DATE="2025-04-24"
 AUTHOR_NAME="kavishka"
 AUTHOR_EMAIL="kavishkadeshan428@gmail.com"
 
@@ -19,13 +18,13 @@ FILES=(
   "Backend/src/main/java/backend/Notification/repository/NotificationRepository.java"
 )
 
-# Calculate number of days between start and end dates
-NUM_DAYS=$(( ( $(date -d "$END_DATE" +%s) - $(date -d "$START_DATE" +%s) ) / 86400 ))
+# Create 3 commits with different timestamps on the same day
+TIMES=("10:00:00" "14:30:00" "17:00:00")
 
-for i in $(seq 0 $NUM_DAYS); do
-  COMMIT_DATE=$(date -d "$START_DATE +$i day" +"%Y-%m-%dT12:00:00")
+for i in {0..2}; do
+  FULL_DATE="${COMMIT_DATE}T${TIMES[$i]}"
   
-  echo "$COMMIT_DATE - Commit $i"
+  echo "$FULL_DATE - Commit $i"
   
   # Randomly select a file to modify
   FILE=${FILES[$RANDOM % ${#FILES[@]}]}
@@ -38,16 +37,16 @@ for i in $(seq 0 $NUM_DAYS); do
   
   # Add a comment based on file type
   if [[ $FILE == *.js ]]; then
-    echo "// Update $i - $(date -d "$COMMIT_DATE" +"%Y-%m-%d") - Enhanced notification functionality" >> "$FILE"
+    echo "// Update $i - $COMMIT_DATE - Enhanced notification functionality" >> "$FILE"
   elif [[ $FILE == *.java ]]; then
-    echo "// Update $i - $(date -d "$COMMIT_DATE" +"%Y-%m-%d") - Improved notification system" >> "$FILE"
+    echo "// Update $i - $COMMIT_DATE - Improved notification system" >> "$FILE"
   elif [[ $FILE == *.css ]]; then
-    echo "/* Update $i - $(date -d "$COMMIT_DATE" +"%Y-%m-%d") - Enhanced notification styling */" >> "$FILE"
+    echo "/* Update $i - $COMMIT_DATE - Enhanced notification styling */" >> "$FILE"
   fi
   
   git add "$FILE"
 
-  GIT_COMMITTER_DATE="$COMMIT_DATE" GIT_AUTHOR_DATE="$COMMIT_DATE" \
+  GIT_COMMITTER_DATE="$FULL_DATE" GIT_AUTHOR_DATE="$FULL_DATE" \
   GIT_AUTHOR_NAME="$AUTHOR_NAME" GIT_AUTHOR_EMAIL="$AUTHOR_EMAIL" \
   GIT_COMMITTER_NAME="$AUTHOR_NAME" GIT_COMMITTER_EMAIL="$AUTHOR_EMAIL" \
   git commit -m "Update $FILE - Notification system enhancement"
