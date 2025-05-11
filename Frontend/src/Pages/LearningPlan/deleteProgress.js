@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import './ProgressUpdate.css';
 
@@ -19,33 +19,56 @@ const updateTemplates = {
   }
 };
 
-function UpdateProgressUpdate() {
-  const { planId, progressId } = useParams();
+function AddProgressUpdate() {
+  const { planId } = useParams();
   const navigate = useNavigate();
+  const [learningPlan, setLearningPlan] = useState(null);
   const [formData, setFormData] = useState({
+    learningPlanId: planId,
+    userId: localStorage.getItem('userID'),
     content: '',
-    updateType: '',
+    updateType: 'TUTORIAL_COMPLETED',
     completionPercentage: 0,
     skillsLearned: [],
     resourcesUsed: ''
   });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProgressUpdate = async () => {
+    // Fetch learning plan details
+    const fetchPlan = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/progress-updates/${progressId}`);
-        setFormData(response.data);
-        setLoading(false);
+        const response = await axios.get(`http://localhost:8080/learningPlan/${planId}`);
+        setLearningPlan(response.data);
       } catch (error) {
-        console.error('Error fetching progress update:', error);
-        alert('Failed to fetch progress update details');
-        setLoading(false);
+        console.error('Error fetching learning plan:', error);
       }
     };
+    fetchPlan();
+  }, [planId]);
 
-    fetchProgressUpdate();
-  }, [progressId]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8080/progress-updates', {
+        learningPlanId: planId,
+        userId: localStorage.getItem('userID'),
+        content: formData.content,
+        updateType: formData.updateType,
+        completionPercentage: formData.completionPercentage,
+        skillsLearned: formData.skillsLearned,
+        resourcesUsed: formData.resourcesUsed,
+        date: new Date().toISOString()
+      });
+
+      if (response.data) {
+        alert('Progress update added successfully!');
+        navigate(`/allLearningPlan`);
+      }
+    } catch (error) {
+      console.error('Error adding progress update:', error);
+      alert('Failed to add progress update. Please check your connection and try again.');
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,29 +78,13 @@ function UpdateProgressUpdate() {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.put(`http://localhost:8080/progress-updates/${progressId}`, {
-        ...formData,
-        planId,
-        userId: localStorage.getItem('userID')
-      });
-      alert('Progress update modified successfully!');
-      navigate('/allLearningPlan');
-    } catch (error) {
-      console.error('Error updating progress:', error);
-      alert('Failed to update progress');
-    }
-  };
-
-  if (loading) return <div>Loading...</div>;
+  if (!learningPlan) return <div>Loading...</div>;
 
   return (
     <div className="progress-update-page">
       <NavBar />
       <div className="progress-update-container">
-        <h1>Update Progress</h1>
+        <h1>Update Progress for {learningPlan.title}</h1>
         <form onSubmit={handleSubmit} className="progress-update-form">
           <div className="form-group">
             <label>Update Type</label>
@@ -85,14 +92,13 @@ function UpdateProgressUpdate() {
               name="updateType" 
               value={formData.updateType}
               onChange={handleChange}
-              className="form-control"
             >
               {Object.entries(updateTemplates).map(([key, template]) => (
                 <option key={key} value={key}>{template.title}</option>
               ))}
             </select>
           </div>
-<div></div>
+
           <div className="form-group">
             <label>Description</label>
             <textarea
@@ -100,9 +106,7 @@ function UpdateProgressUpdate() {
               value={formData.content}
               onChange={handleChange}
               required
-              className="form-control"
               placeholder="Describe your progress..."
-              rows={4}
             />
           </div>
 
@@ -114,7 +118,6 @@ function UpdateProgressUpdate() {
                 name="skillsLearned"
                 value={formData.skillsLearned.join(',')}
                 onChange={handleChange}
-                className="form-control"
                 placeholder="e.g., React, Node.js, MongoDB"
               />
             </div>
@@ -128,7 +131,6 @@ function UpdateProgressUpdate() {
                 name="resourcesUsed"
                 value={formData.resourcesUsed}
                 onChange={handleChange}
-                className="form-control"
                 placeholder="e.g., Udemy Course, YouTube Tutorial"
               />
             </div>
@@ -143,26 +145,14 @@ function UpdateProgressUpdate() {
               onChange={handleChange}
               min="0"
               max="100"
-              className="form-control-range"
             />
           </div>
 
-          <div className="button-group">
-            <button type="submit" className="submit-btn">
-              Update Progress
-            </button>
-            <button 
-              type="button" 
-              className="cancel-btn"
-              onClick={() => navigate('/allLearningPlan')}
-            >
-              Cancel
-            </button>
-          </div>
+          <button type="submit" className="submit-btn">Add Progress Update</button>
         </form>
       </div>
     </div>
   );
 }
 
-export default UpdateProgressUpdate;
+export default AddProgressUpdate;
