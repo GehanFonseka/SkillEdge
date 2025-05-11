@@ -8,7 +8,7 @@ fi
 
 START_DATE="2025-03-16"
 END_DATE="2025-04-12"
-AUTHOR_NAME="deshanMAK"
+AUTHOR_NAME="kavishka"
 AUTHOR_EMAIL="kavishkadeshan428@gmail.com"
 
 # Files related to NotificationManagement with correct case sensitivity
@@ -50,7 +50,7 @@ for i in $(seq 0 $NUM_DAYS); do
   GIT_COMMITTER_DATE="$COMMIT_DATE" GIT_AUTHOR_DATE="$COMMIT_DATE" \
   GIT_AUTHOR_NAME="$AUTHOR_NAME" GIT_AUTHOR_EMAIL="$AUTHOR_EMAIL" \
   GIT_COMMITTER_NAME="$AUTHOR_NAME" GIT_COMMITTER_EMAIL="$AUTHOR_EMAIL" \
-  git commit -m "Update $FILE - Notification system enhancement - commit $i"
+  git commit -m "Update $FILE - Notification system enhancement"
 done
 
 echo "Done. Push it to GitHub if you'd like."
