@@ -20,6 +20,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 
 // Styled components
 const StyledSearchBar = styled(Paper)(({ theme }) => ({
@@ -46,6 +47,19 @@ const getProgressLevel = (percentage) => {
   if (percentage < 66) return "medium";
   return "high";
 };
+
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`${payload[0].name}: ${payload[0].value} milestones`}</p>
+      </div>
+    );
+  }
+  return null;
+};
+
+const COLORS = ['#00ffbb', '#1a1b3d'];
 
 function AllLearningPlan() {
   const [posts, setPosts] = useState([]);
@@ -78,21 +92,17 @@ function AllLearningPlan() {
     setFilteredPosts(filtered);
   };
 
-  useEffect(() => {
-    const fetchProgressUpdates = async (planId) => {
-      try {
-        const response = await axios.get(`http://localhost:8080/progress-updates/plan/${planId}`);
-        setProgressUpdates(prev => ({
-          ...prev,
-          [planId]: response.data
-        }));
-      } catch (error) {
-        console.error('Error fetching progress updates:', error);
-      }
-    };
-
-    filteredPosts.forEach(post => fetchProgressUpdates(post.id));
-  }, [filteredPosts]);
+  const fetchProgressUpdates = async (planId) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/progress-updates/plan/${planId}`);
+      setProgressUpdates(prev => ({
+        ...prev,
+        [planId]: response.data
+      }));
+    } catch (error) {
+      console.error('Error fetching progress updates:', error);
+    }
+  };
 
   const getEmbedURL = (url) => {
     try {
@@ -130,10 +140,13 @@ function AllLearningPlan() {
   };
 
   const toggleProgress = (postId) => {
-    setShowProgress(prev => ({
-      ...prev,
-      [postId]: !prev[postId]
-    }));
+    setShowProgress(prev => {
+      const newShow = { ...prev, [postId]: !prev[postId] };
+      if (newShow[postId]) {
+        fetchProgressUpdates(postId);
+      }
+      return newShow;
+    });
   };
 
   const handleUpdateProgress = (planId, progressId) => {
@@ -157,27 +170,32 @@ function AllLearningPlan() {
     }
   };
 
+  const getChartData = (update) => {
+    return [
+      { name: 'Completed', value: update.completedSteps },
+      { name: 'Remaining', value: update.totalSteps - update.completedSteps }
+    ];
+  };
+
   const renderProgressSection = (post) => {
     const updates = progressUpdates[post.id] || [];
     return (
       <div className="progress-section">
-        <div className="button-container">
-          <button 
+        <div className="progress-header">
+          <button
             className="add-progress-btn"
             onClick={() => navigate(`/learning-plan/${post.id}/add-progress`)}
           >
-            <FaPlus size={16} />
             Add Progress
           </button>
-          
-          <button 
-            className={`show-progress-btn ${showProgress[post.id] ? 'active' : ''}`}
+          <button
+            className="show-progress-btn"
             onClick={() => toggleProgress(post.id)}
           >
-            <IoStatsChart size={16} />
             {showProgress[post.id] ? 'Hide Progress' : 'Show Progress'}
           </button>
         </div>
+
         {showProgress[post.id] && (
           <div className="progress-updates">
             <h4>Learning Progress</h4>
@@ -208,31 +226,42 @@ function AllLearningPlan() {
                       </div>
                     )}
                   </div>
-                  <p className="update-content">{update.content}</p>
-                  <div className="update-details">
-                    <div className="completion-bar">
-                      <div 
-                        className="completion-fill"
-                        style={{ width: `${update.completionPercentage}%` }}
-                        data-progress={getProgressLevel(update.completionPercentage)}
-                      />
-                      <span 
-                        className="completion-text"
-                        data-progress={getProgressLevel(update.completionPercentage)}
-                      >
-                        {update.completionPercentage}% Complete
-                      </span>
+                  <div className="progress-content">
+                    <div className="chart-section">
+                      <ResponsiveContainer width="100%" height={220}>
+                        <PieChart>
+                          <Pie
+                            data={getChartData(update)}
+                            cx="50%"
+                            cy="50%"
+                            labelLine={false}
+                            outerRadius={60}
+                            fill="#8884d8"
+                            dataKey="value"
+                            animationDuration={1000}
+                          >
+                            {getChartData(update).map((entry, index) => (
+                              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                          </Pie>
+                          <Tooltip content={<CustomTooltip />} />
+                          <Legend />
+                        </PieChart>
+                      </ResponsiveContainer>
                     </div>
-                    {update.skillsLearned?.length > 0 && (
-                      <div className="skills-learned">
-                        <strong>Skills:</strong> {update.skillsLearned.join(', ')}
-                      </div>
-                    )}
-                    {update.resourcesUsed && (
-                      <div className="resources-used">
-                        <strong>Resources:</strong> {update.resourcesUsed}
-                      </div>
-                    )}
+                    <div className="description-section">
+                      <p className="update-content">{update.content}</p>
+                      {update.skillsLearned?.length > 0 && (
+                        <div className="skills-learned">
+                          <strong>Skills:</strong> {update.skillsLearned.join(', ')}
+                        </div>
+                      )}
+                      {update.resourcesUsed && (
+                        <div className="resources-used">
+                          <strong>Resources:</strong> {update.resourcesUsed}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))

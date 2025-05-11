@@ -12,6 +12,8 @@ public class ProgressUpdateModel {
     private String userId;
     private String content;
     private String updateType;
+    private int totalSteps;
+    private int completedSteps;
     private int completionPercentage;
     private String[] skillsLearned;
     private String resourcesUsed;
@@ -40,8 +42,26 @@ public class ProgressUpdateModel {
     public String getUpdateType() { return updateType; }
     public void setUpdateType(String updateType) { this.updateType = updateType; }
     
+    public int getTotalSteps() { return totalSteps; }
+    public void setTotalSteps(int totalSteps) { 
+        this.totalSteps = totalSteps;
+        calculateCompletionPercentage();
+    }
+    
+    public int getCompletedSteps() { return completedSteps; }
+    public void setCompletedSteps(int completedSteps) { 
+        this.completedSteps = completedSteps;
+        calculateCompletionPercentage();
+    }
+    
     public int getCompletionPercentage() { return completionPercentage; }
-    public void setCompletionPercentage(int completionPercentage) { this.completionPercentage = completionPercentage; }
+    private void calculateCompletionPercentage() {
+        if (totalSteps > 0) {
+            this.completionPercentage = (completedSteps * 100) / totalSteps;
+        } else {
+            this.completionPercentage = 0;
+        }
+    }
     
     public String[] getSkillsLearned() { return skillsLearned; }
     public void setSkillsLearned(String[] skillsLearned) { this.skillsLearned = skillsLearned; }

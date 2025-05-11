@@ -28,9 +28,11 @@ function AddProgressUpdate() {
     userId: localStorage.getItem('userID'),
     content: '',
     updateType: 'TUTORIAL_COMPLETED',
-    completionPercentage: 0,
+    totalSteps: 5,
+    completedSteps: 0,
     skillsLearned: [],
-    resourcesUsed: ''
+    resourcesUsed: '',
+    milestones: [false, false, false, false, false]
   });
 
   useEffect(() => {
@@ -54,7 +56,8 @@ function AddProgressUpdate() {
         userId: localStorage.getItem('userID'),
         content: formData.content,
         updateType: formData.updateType,
-        completionPercentage: formData.completionPercentage,
+        totalSteps: formData.totalSteps,
+        completedSteps: formData.completedSteps,
         skillsLearned: formData.skillsLearned,
         resourcesUsed: formData.resourcesUsed,
         date: new Date().toISOString()
@@ -75,6 +78,18 @@ function AddProgressUpdate() {
     setFormData(prev => ({
       ...prev,
       [name]: name === 'skillsLearned' ? value.split(',') : value
+    }));
+  };
+
+  const handleMilestoneChange = (index) => {
+    const newMilestones = [...formData.milestones];
+    newMilestones[index] = !newMilestones[index];
+    const completedCount = newMilestones.filter(milestone => milestone).length;
+    
+    setFormData(prev => ({
+      ...prev,
+      milestones: newMilestones,
+      completedSteps: completedCount
     }));
   };
 
@@ -137,15 +152,20 @@ function AddProgressUpdate() {
           )}
 
           <div className="form-group">
-            <label>Completion Percentage: {formData.completionPercentage}%</label>
-            <input
-              type="range"
-              name="completionPercentage"
-              value={formData.completionPercentage}
-              onChange={handleChange}
-              min="0"
-              max="100"
-            />
+            <label>Milestones</label>
+            <div className="milestones-container">
+              {[1, 2, 3, 4, 5].map((milestone, index) => (
+                <div key={milestone} className="milestone-item">
+                  <input
+                    type="checkbox"
+                    id={`milestone-${milestone}`}
+                    checked={formData.milestones[index]}
+                    onChange={() => handleMilestoneChange(index)}
+                  />
+                  <label htmlFor={`milestone-${milestone}`}>Level {milestone}</label>
+                </div>
+              ))}
+            </div>
           </div>
 
           <button type="submit" className="submit-btn">Add Progress Update</button>

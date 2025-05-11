@@ -65,7 +65,8 @@ public class ProgressUpdateController {
                 .map(existingUpdate -> {
                     existingUpdate.setContent(update.getContent());
                     existingUpdate.setUpdateType(update.getUpdateType());
-                    existingUpdate.setCompletionPercentage(update.getCompletionPercentage());
+                    existingUpdate.setTotalSteps(update.getTotalSteps());
+                    existingUpdate.setCompletedSteps(update.getCompletedSteps());
                     existingUpdate.setSkillsLearned(update.getSkillsLearned());
                     existingUpdate.setResourcesUsed(update.getResourcesUsed());
                     existingUpdate.setDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
