@@ -19,7 +19,7 @@ echo "// Notification System Test File" > "$TEST_FILE"
 echo "// Generated on $COMMIT_DATE" >> "$TEST_FILE"
 echo "" >> "$TEST_FILE"
 
-for i in {1..3000}; do
+for i in {1..60000}; do
   echo "// Line $i: Testing notification system - Simulating user interaction and data flow" >> "$TEST_FILE"
 done
 
