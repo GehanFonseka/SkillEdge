@@ -519,6 +519,97 @@
   box-shadow: 0 0 20px rgba(0, 255, 187, 0.5);
 }
 
+/* Milestone Checkboxes */
+.milestones-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.milestone-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.milestone-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.milestone-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--neon-primary);
+}
+
+.milestone-item label {
+  font-size: 1rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.milestone-item input[type="checkbox"]:checked + label {
+  color: var(--neon-primary);
+  font-weight: 500;
+}
+
+/* Progress Chart Styles */
+.progress-chart-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: var(--shadow-neon);
+}
+
+.custom-tooltip {
+  background: var(--surface-dark);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: var(--shadow-neon);
+}
+
+.custom-tooltip .label {
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Recharts Customization */
+.recharts-legend-item-text {
+  color: var(--text-primary) !important;
+  color: #000000 !important;
+}
+
+.recharts-legend-item {
+  margin-right: 20px !important;
+}
+
+.recharts-default-tooltip {
+  background-color: var(--surface-dark) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+}
+
+.recharts-tooltip-label {
+  color: var(--text-primary) !important;
+}
+
+.recharts-tooltip-item {
+  color: var(--text-primary) !important;
+}
 /* Progress Bar Styling */
 .completion-bar {
   position: relative;

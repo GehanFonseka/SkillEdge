@@ -743,6 +743,296 @@ textarea {
   margin-bottom: 16px;
 }
 
+.progress-update-card {
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  min-height: unset;
+}
+
+
+/* Progress Chart in Display Section */
+.progress-chart-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: var(--shadow-neon);
+  height: 300px; /* Added fixed height */
+}
+
+/* Recharts Customization */
+.recharts-wrapper {
+  margin: 0 auto;
+}
+
+.recharts-legend-item-text {
+  color: #000000 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.recharts-legend-item {
+  margin-right: 20px !important;
+}
+
+.recharts-legend-item-text,
+.recharts-legend-item-text * {
+  color: #000000 !important;
+  fill: #000000 !important;
+}
+
+.recharts-default-tooltip {
+  background-color: var(--surface-dark) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+}
+
+.recharts-tooltip-label {
+  color: #000000 !important;
+}
+
+.recharts-tooltip-item {
+  color: #000000 !important;
+}
+
+.recharts-pie-label-text {
+  fill: #000000 !important;
+}
+
+/* Override any potential conflicting styles */
+.recharts-legend-item-text,
+.recharts-legend-item-text span,
+.recharts-legend-item-text div {
+  color: #000000 !important;
+  fill: #000000 !important;
+}
+
+/* Chart Container */
+.recharts-wrapper {
+  margin: 0 auto;
+}
+
+/* Chart Text */
+.recharts-text {
+  fill: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Legend Styles */
+.recharts-legend-wrapper {
+  padding: 10px !important;
+}
+
+.recharts-legend-item {
+  margin: 8px 0 !important;
+}
+
+.recharts-legend-item-text {
+  color: #000000 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-left: 8px !important;
+}
+
+/* Custom Tooltip */
+.custom-tooltip {
+  background: var(--surface-dark);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: var(--shadow-neon);
+}
+
+.custom-tooltip .label {
+  color: #000000;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Chart Colors */
+.recharts-pie-label-text {
+  fill: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.recharts-pie-label-line {
+  stroke: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Progress Update Card with Chart */
+.progress-update-card {
+  
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.progress-update-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-neon);
+}
+
+/* Update Header */
+.update-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.update-header-left {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.update-type {
+  background: var(--gradient);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.update-date {
+  color: #000000;
+  font-size: 0.9rem;
+}
+
+.progress-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.progress-action-btn {
+  background: none;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.progress-action-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.progress-action-btn.delete:hover {
+  color: var(--error);
+}
+
+.progress-icon {
+  font-size: 1.2rem;
+}
+
+.update-content {
+  color: #000000;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.skills-learned,
+.resources-used {
+  margin-top: 10px;
+  color: #000000;
+  font-size: 0.9rem;
+}
+
+.skills-learned strong,
+.resources-used strong {
+  color: #000000;
+  margin-right: 5px;
+}
+
+/* Recharts Customization */
+.recharts-legend-item-text {
+  color: #000000 !important;
+}
+
+.recharts-legend-item {
+  margin-right: 20px !important;
+}
+
+.recharts-default-tooltip {
+  background-color: var(--surface-dark) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+}
+
+.recharts-tooltip-label {
+  color: #000000 !important;
+}
+
+.recharts-tooltip-item {
+  color: #000000 !important;
+}
+
+/* Progress Content Layout */
+.progress-content {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  height: auto;
+  align-items: center;
+  padding: 0;
+}
+
+.chart-section {
+  flex: 1;
+  min-width: 180px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-top: 0;
+}
+
+.description-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+}
+
+.update-content {
+  color: #000000;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.skills-learned,
+.resources-used {
+  margin-top: 0;
+  color: #000000;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .progress-content {
+    flex-direction: column;
+  }
+  
+  .chart-section {
+    min-width: 100%;
+  }
+}
+
 /* Progress Bar */
 .completion-bar {
   height: 8px;
