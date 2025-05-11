@@ -25,7 +25,8 @@ function UpdateProgressUpdate() {
   const [formData, setFormData] = useState({
     content: '',
     updateType: '',
-    completionPercentage: 0,
+    totalSteps: 1,
+    completedSteps: 0,
     skillsLearned: [],
     resourcesUsed: ''
   });
@@ -92,7 +93,7 @@ function UpdateProgressUpdate() {
               ))}
             </select>
           </div>
-<div></div>
+
           <div className="form-group">
             <label>Description</label>
             <textarea
@@ -135,16 +136,41 @@ function UpdateProgressUpdate() {
           )}
 
           <div className="form-group">
-            <label>Completion Percentage: {formData.completionPercentage}%</label>
-            <input
-              type="range"
-              name="completionPercentage"
-              value={formData.completionPercentage}
+            <label>Total Steps/Milestones</label>
+            <select
+              name="totalSteps"
+              value={formData.totalSteps}
               onChange={handleChange}
-              min="0"
-              max="100"
-              className="form-control-range"
-            />
+              className="form-control"
+            >
+              {[1, 2, 3, 4, 5].map(num => (
+                <option key={num} value={num}>{num}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Completed Steps/Milestones</label>
+            <select
+              name="completedSteps"
+              value={formData.completedSteps}
+              onChange={handleChange}
+              className="form-control"
+            >
+              {[...Array(formData.totalSteps + 1)].map((_, index) => (
+                <option key={index} value={index}>{index}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Completion: {Math.round((formData.completedSteps / formData.totalSteps) * 100)}%</label>
+            <div className="completion-bar">
+              <div 
+                className="completion-fill"
+                style={{ width: `${(formData.completedSteps / formData.totalSteps) * 100}%` }}
+              />
+            </div>
           </div>
 
           <div className="button-group">
