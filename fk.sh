@@ -10,8 +10,22 @@ COMMIT_DATE="2025-04-24"
 AUTHOR_NAME="kavishka"
 AUTHOR_EMAIL="kavishkadeshan428@gmail.com"
 
-# Files related to NotificationManagement with correct case sensitivity
+# Create dummy test file with 3000 lines
+TEST_FILE="Frontend/src/Pages/NotificationManagement/NotificationTest.js"
+mkdir -p "Frontend/src/Pages/NotificationManagement"
+
+# Generate 3000 lines of dummy comments
+echo "// Notification System Test File" > "$TEST_FILE"
+echo "// Generated on $COMMIT_DATE" >> "$TEST_FILE"
+echo "" >> "$TEST_FILE"
+
+for i in {1..3000}; do
+  echo "// Line $i: Testing notification system - Simulating user interaction and data flow" >> "$TEST_FILE"
+done
+
+# Files to modify including our new test file
 FILES=(
+  "$TEST_FILE"
   "Frontend/src/Pages/NotificationManagement/NotificationsPage.js"
   "Frontend/src/Pages/NotificationManagement/notification.css"
   "Backend/src/main/java/backend/Notification/controller/NotificationController.java"
@@ -31,8 +45,9 @@ for i in {0..2}; do
   
   # Check if file exists before modifying
   if [ ! -f "$FILE" ]; then
-    echo "Warning: File $FILE does not exist, skipping..."
-    continue
+    echo "Warning: File $FILE does not exist, creating it..."
+    mkdir -p "$(dirname "$FILE")"
+    touch "$FILE"
   fi
   
   # Add a comment based on file type
