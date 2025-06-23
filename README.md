@@ -20,8 +20,6 @@ Skilledge is a comprehensive platform developed using Java Spring Boot for the b
 | Sajani Sapurna                     | IT22197832          | sapurna            |
 
 
----
-
 ## 🛠️ Tech Stack
 
 - **Frontend:** React.js
