@@ -9,7 +9,7 @@ Skilledge is a comprehensive platform developed using Java Spring Boot for the b
 - **Learning Plan:** Create structured learning plans to track skill development.
 - **Progress & Achievements:** Monitor progress and celebrate achievements throughout the learning journey.
   
-
+---
   ## 👥 Contributors
 | Name                               | Registration Number |Github Username     |
 |------------------------------------|---------------------|--------------------|
