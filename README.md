@@ -18,6 +18,7 @@ Skilledge is a comprehensive platform developed using Java Spring Boot for the b
 | Kavishka Deshan                    | IT22195616          | deshanMAK          |
 | Sajani Sapurna                     | IT22197832          | sapurna            |
 
+---
 
 ## 🛠️ Tech Stack
 
