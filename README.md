@@ -1,16 +1,3 @@
-# Skilledge
-
-Skilledge is a comprehensive platform developed using Java Spring Boot for the backend and React.js for the frontend. It provides users with a centralized system to manage posts, receive notifications, create learning plans, and track progress and achievements.
-
-## 🚀 Features
-
-- **Post Management:** Create, edit, and delete posts to share updates, information, or learning content.
-- **Notification System:** Real-time notifications for updates, reminders, and learning plan milestones.
-- **Learning Plan:** Create structured learning plans to track skill development.
-- **Progress & Achievements:** Monitor progress and celebrate achievements throughout the learning journey.
-  
----
-
 # 🎓 Skilledge
 
 **Skilledge** is an intelligent skill-sharing and learning platform built with **Java Spring Boot** (backend) and **React.js** (frontend). It offers users a centralized system to create posts, receive real-time notifications, manage structured learning plans, and track progress and achievements — all in one seamless experience.
