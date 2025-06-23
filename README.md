@@ -8,6 +8,7 @@ Skilledge is a comprehensive platform developed using Java Spring Boot for the b
 - **Notification System:** Real-time notifications for updates, reminders, and learning plan milestones.
 - **Learning Plan:** Create structured learning plans to track skill development.
 - **Progress & Achievements:** Monitor progress and celebrate achievements throughout the learning journey.
+  
 
   ## 👥 Contributors
 | Name                               | Registration Number |Github Username     |
@@ -16,6 +17,7 @@ Skilledge is a comprehensive platform developed using Java Spring Boot for the b
 | Chamudi Himasha                    | IT22226914          | ChamuHimasha       |
 | Kavishka Deshan                    | IT22195616          | deshanMAK          |
 | Sajani Sapurna                     | IT22197832          | sapurna            |
+
 
 ## 🛠️ Tech Stack
 
